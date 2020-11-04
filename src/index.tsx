@@ -5,7 +5,9 @@ import "./app.scss"
 
 const App = () => {
     return <div>pzzixelart
-        <p>zmiana</p>
+        <p>zmiana1</p>
+        <p>zmiana2</p>
+        <p>zmiana3</p>
         <p>aaaa</p>
     </div>;
 }

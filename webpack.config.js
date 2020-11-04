@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
 const ReactRefreshPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const outputPath = path.resolve(__dirname, 'build');
 
@@ -9,7 +9,7 @@ module.exports = {
   mode: 'development',
   watch: true,
   entry: {
-    main: ['webpack-hot-middleware/client', './src/index.tsx'],
+    main: ['./src/index.tsx'],
   },
   output: {
     path: outputPath,
@@ -19,9 +19,18 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(j|t)sx?$/,
+        test: /\.tsx?$/,
         include: path.join(__dirname, 'src'),
-        use: "babel-loader",
+        use: [
+          {
+            loader: 'babel-loader',
+            options: { plugins: ['react-refresh/babel'] },
+          },
+          {
+            loader: 'ts-loader',
+            options: { transpileOnly: true },
+          },
+        ]
       }, {
         test: /\.scss$/,
         use: [
@@ -33,16 +42,12 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new ReactRefreshPlugin({
-      overlay: {
-        sockIntegration: 'whm',
-      }
-    }),
+    new ReactRefreshPlugin(),
+    new ForkTsCheckerWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: "Pixelart",
+      filename: './index.html',
       template: './index.html',
-    })
+    }),
   ],
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
