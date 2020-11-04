@@ -1,14 +1,15 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-const { WebpackPluginServe: ServePlugin } = require('webpack-plugin-serve');
+const webpack = require('webpack');
+const ReactRefreshPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 const outputPath = path.resolve(__dirname, 'build');
 
 module.exports = {
   mode: 'development',
+  watch: true,
   entry: {
-    main: ['webpack-plugin-serve/client', './src/index.tsx'],
+    main: ['webpack-hot-middleware/client', './src/index.tsx'],
   },
   output: {
     path: outputPath,
@@ -32,14 +33,11 @@ module.exports = {
     ]
   },
   plugins: [
-    new ServePlugin({
-      static: outputPath,
-      status: false,
-    }),
-    new ReactRefreshWebpackPlugin({
+    new webpack.HotModuleReplacementPlugin(),
+    new ReactRefreshPlugin({
       overlay: {
-        sockIntegration: 'wps',
-      },
+        sockIntegration: 'whm',
+      }
     }),
     new HtmlWebpackPlugin({
       title: "Pixelart",

@@ -4,9 +4,9 @@ import ReactDOM from 'react-dom';
 import "./app.scss"
 
 const App = () => {
-    return <div>pixelart
+    return <div>pzzixelart
         <p>zmiana</p>
-        zzsa
+        <p>aaaa</p>
     </div>;
 }
 
