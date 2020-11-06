@@ -1,12 +1,12 @@
 import React from 'react';
-import "./Menu.scss";
+import MenuStyledComponents from './MenuStyledComponents';
 
 interface IMenuProps {
     name: string
 }
 
 const Menu = (props: IMenuProps) => {
-    return <div className='Menu'>{props.name}</div>
+    return <MenuStyledComponents.Menu>{props.name}</MenuStyledComponents.Menu>
 }
 
 export default Menu;

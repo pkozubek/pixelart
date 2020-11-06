@@ -1,7 +1,6 @@
 import React from 'react';
 import Menu from "./Menu/Menu";
-
-import "./Header.scss";
+import HeaderStyledComponents from './HeaderStyledComponents';
 
 const Header = () => {
     const menus = [
@@ -11,9 +10,9 @@ const Header = () => {
         { name: 'test' }
     ]
 
-    return <div className='Header'>
+    return <HeaderStyledComponents.Header>
         {menus.map(menu => <Menu name={menu.name} />)}
-    </div>
+    </HeaderStyledComponents.Header>
 }
 
 export default Header;
