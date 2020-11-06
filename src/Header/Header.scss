@@ -1,0 +1,9 @@
+@import '../StyleVariables/Colors.scss';
+@import '../StyleVariables/Size.scss';
+
+.Header {
+    background: $grey;
+    width: 100%;
+    height: $topBar;
+    display: flex;
+}
