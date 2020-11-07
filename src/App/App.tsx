@@ -5,6 +5,7 @@ import PixelGrid from "../PixelGrid/PixelGrid";
 import { PixelReducer, PixelContext } from "../context/PixelContext";
 import StyledApp from "./StyledApp";
 import SideBar from '../SideBar/SideBar';
+import GlobalStyle from './GlobalStyle';
 
 const initialState = {
     pixelTable: defaultPixelTable
@@ -14,8 +15,8 @@ const App = () => {
     const [state, dispatch] = useReducer(PixelReducer, initialState)
 
     return <PixelContext.Provider value={{ state, dispatch }}>
+        <GlobalStyle />
         <StyledApp.App>
-            <StyledApp.GlobalStyle />
             <Header />
             <StyledApp.BodyContainer>
                 <SideBar />
