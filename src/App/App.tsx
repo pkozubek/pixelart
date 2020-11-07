@@ -1,31 +1,28 @@
-import React, { useReducer } from 'react';
-import { defaultPixelTable } from '../consts';
+import React from 'react';
 import Header from "../Header/Header";
-import PixelGrid from "../PixelGrid/PixelGrid";
-import { PixelReducer, PixelContext } from "../context/PixelContext";
+import { PixelContextProvider } from "../context/PixelContext";
 import StyledApp from "./StyledApp";
 import SideBar from '../SideBar/SideBar';
 import GlobalStyle from './GlobalStyle';
+import PixelGrid from "../PixelGrid/PixelGrid";
+import { ColorContextProvider } from '../context/ColorContext';
 
-const initialState = {
-    pixelTable: defaultPixelTable
-}
 
 const App = () => {
-    const [state, dispatch] = useReducer(PixelReducer, initialState)
-
-    return <PixelContext.Provider value={{ state, dispatch }}>
-        <GlobalStyle />
-        <StyledApp.App>
-            <Header />
-            <StyledApp.BodyContainer>
-                <SideBar />
-                <StyledApp.WorkingSpace>
-                    <PixelGrid />
-                </StyledApp.WorkingSpace>
-            </StyledApp.BodyContainer>
-        </StyledApp.App>
-    </PixelContext.Provider>
+    return <PixelContextProvider>
+        <ColorContextProvider>
+            <GlobalStyle />
+            <StyledApp.App>
+                <Header />
+                <StyledApp.BodyContainer>
+                    <SideBar />
+                    <StyledApp.WorkingSpace>
+                        <PixelGrid />
+                    </StyledApp.WorkingSpace>
+                </StyledApp.BodyContainer>
+            </StyledApp.App>
+        </ColorContextProvider>
+    </PixelContextProvider>
 }
 
 export default App;

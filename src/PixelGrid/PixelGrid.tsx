@@ -3,13 +3,11 @@ import { PixelContext } from "../context/PixelContext";
 import { StyledPixelGrid } from "./StyledPixelGrid";
 
 const PixelGrid = () => {
-    const { state } = useContext(PixelContext);
+    const { pixelTable, rows, columns, pixelSize } = useContext(PixelContext);
 
-    return <div className='PixelGrid'>
-        {state.pixelTable.map(pixel => <StyledPixelGrid.PixelGrid>
-            <StyledPixelGrid.Pixel />
-        </StyledPixelGrid.PixelGrid>)}
-    </div>
+    return <StyledPixelGrid.PixelGrid rows={rows} columns={columns} pixelSize={pixelSize}>
+        {pixelTable.map(pixelRow => pixelRow.map(pixelColor => <StyledPixelGrid.Pixel pixelSize={pixelSize} color={pixelColor} />))}
+    </StyledPixelGrid.PixelGrid>
 }
 
 

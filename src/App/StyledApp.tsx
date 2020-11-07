@@ -17,6 +17,10 @@ const BodyContainer = styled.div`
 const WorkingSpace = styled.div`
     width: ${workingSpaceWidth};
     height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 `;
 
 const StyledApp = {

@@ -21,10 +21,17 @@ const ColorRectangle = styled.div`
     background: ${({ color }) => color}
 `;
 
+const PickedColor = styled.div`
+    width: 60px;
+    height: 60px;
+    background: ${({ color }) => color}
+`;
+
 const StyledSideBar = {
     SideBar,
     ColorRectangle,
-    ColorContainer
+    ColorContainer,
+    PickedColor
 }
 
 export default StyledSideBar;

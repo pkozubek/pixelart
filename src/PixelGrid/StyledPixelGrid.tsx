@@ -1,18 +1,16 @@
 import styled from 'styled-components';
 
 const PixelGrid = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    height: calc(100% - 36px);
+    display: grid;
+    grid-template-rows: ${({ rows, pixelSize }) => `repeat(${rows}, ${pixelSize}px)}`};
+    grid-template-columns: ${({ columns, pixelSize }) => `repeat(${columns}, ${pixelSize}px)}`};
 `;
 
 const Pixel = styled.div`
-    width: 40px;
-    height: 40px;
+    width: ${({ pixelSize }) => `${pixelSize}px`};
+    height: ${({ pixelSize }) => `${pixelSize}px`};
     border: 1px solid black;
-    background: red;
+    background: ${({ color }) => color};
 `;
 
 export const StyledPixelGrid = {
