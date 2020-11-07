@@ -15,7 +15,7 @@ const Pixel = styled.div`
     background: red;
 `;
 
-export const PixelGridComponents = {
+export const StyledPixelGrid = {
     Pixel,
     PixelGrid
 }

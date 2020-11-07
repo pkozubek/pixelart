@@ -1,5 +1,6 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import colors from "../StyleVariables/colors";
+import { bodyContainerHeight, workingSpaceWidth } from "../StyleVariables/size";
 
 const App = styled.div`
     width: 100vw;
@@ -45,9 +46,22 @@ const GlobalStyle = createGlobalStyle`
         border-spacing: 0; }
 `;
 
-const AppStyledComponents = {
+const BodyContainer = styled.div`
+        width: 100%;
+        height: ${bodyContainerHeight};
+        display: flex;
+`
+
+const WorkingSpace = styled.div`
+    width: ${workingSpaceWidth};
+    height: 100%;
+`;
+
+const StyledApp = {
     GlobalStyle,
-    App
+    App,
+    BodyContainer,
+    WorkingSpace
 }
 
-export default AppStyledComponents;
+export default StyledApp;
