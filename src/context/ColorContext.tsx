@@ -8,10 +8,9 @@ interface IPixelContextProvider {
 }
 
 export const ColorContextProvider = (props: IPixelContextProvider) => {
-    const [firstColor, setFirstColor] = useState(colors.grey);
-    const [secondColor, setSecondColor] = useState(colors.white);
+    const [pickedColor, setPickedColors] = useState<[string, string]>([colors.grey, colors.white]);
 
-    return <ColorContext.Provider value={{ firstColor, secondColor }}>
+    return <ColorContext.Provider value={{ pickedColor, setPickedColors }}>
         {props.children}
     </ColorContext.Provider>
 }

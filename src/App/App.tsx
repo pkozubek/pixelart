@@ -1,14 +1,18 @@
 import React from 'react';
-import Header from "../Header/Header";
+import Header from "../UI/Header/Header";
 import { PixelContextProvider } from "../context/PixelContext";
 import StyledApp from "./StyledApp";
-import SideBar from '../SideBar/SideBar';
+import SideBar from '../UI/SideBar/SideBar';
 import GlobalStyle from './GlobalStyle';
 import PixelGrid from "../PixelGrid/PixelGrid";
 import { ColorContextProvider } from '../context/ColorContext';
 
 
 const App = () => {
+    document.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+    });
+
     return <PixelContextProvider>
         <ColorContextProvider>
             <GlobalStyle />

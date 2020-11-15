@@ -1,6 +1,5 @@
 export enum PixelActions {
-    SET_PIXEL = 'SET_PIXEL',
-    SET_COLOR = 'SET_COLOR',
+    SET_PIXEL_TABLE = 'SET_PIXEL',
     UNDO = 'UNDO'
 }
 

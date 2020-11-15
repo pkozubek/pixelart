@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import colors from "../StyleVariables/colors";
-import { sideBarWidth } from "../StyleVariables/size";
+import colors from "../../StyleVariables/colors";
+import { sideBarWidth } from "../../StyleVariables/size";
 
 const SideBar = styled.div`
     height: 100%;
@@ -13,6 +13,7 @@ const ColorContainer = styled.div`
     border: 1px solid ${colors.white};
     width: 80%;
     margin-left: auto;
+    display: flex;
 `
 
 const ColorRectangle = styled.div`

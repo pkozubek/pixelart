@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import colors from '../StyleVariables/colors';
-import { topBarHeight } from "../StyleVariables/size";
+import colors from '../../StyleVariables/colors';
+import { topBarHeight } from "../../StyleVariables/size";
 
 const Header = styled.div`
     background: ${colors.grey};

@@ -1,5 +1,6 @@
 import React, { createContext, useReducer, ReactChildren } from 'react';
 import { defaultPixelTable } from '../consts';
+import { PixelActions } from './Actions';
 
 export const PixelContext = createContext(null);
 
@@ -17,14 +18,26 @@ interface IPixelContextProvider {
 export const PixelContextProvider = (props: IPixelContextProvider) => {
     const pixelReducer = (state, action) => {
         switch (action.type) {
-
+            case PixelActions.SET_PIXEL_TABLE:
+                return { ...state, pixelTable: action.pixelTable }
         }
     }
 
     const [state, dispatch] = useReducer(pixelReducer, initialState);
-    const { pixelTable } = state;
 
-    return <PixelContext.Provider value={{ ...state }}>
+    const setPixel = (color: string, row: number, column: number) => {
+        const newPixelTable = [...state.pixelTable];
+        const newRow = [...newPixelTable[column]];
+        newRow[row] = color;
+        newPixelTable[column] = newRow;
+
+        dispatch({
+            type: PixelActions.SET_PIXEL_TABLE,
+            pixelTable: newPixelTable
+        })
+    }
+
+    return <PixelContext.Provider value={{ ...state, setPixel }}>
         {props.children}
     </PixelContext.Provider>
 }

@@ -4,7 +4,9 @@ const colors = {
     menu: '#ede9e8',
     menuHover: '#e0dbda',
     sidebar: '#000000',
-    white: '#FFFFFF'
+    white: '#FFFFFF',
+    shadow: 'rgba(66, 66, 66, 0.8)',
+    modal: '#ccc'
 }
 
 export default colors;
