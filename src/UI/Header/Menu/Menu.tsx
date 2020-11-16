@@ -20,7 +20,9 @@ const Menu = (props: IMenuProps) => {
     if (props.subItems) {
         menu = <MenuStyledComponents.MenuWithSubItems onClick={visibilityHandler}>
             {props.name}
-            {visible && props.subItems.map((subItem) => <MenuStyledComponents.SubItem onClick={subItem.onClick}>{subItem.name}</MenuStyledComponents.SubItem>)}
+            {visible && <MenuStyledComponents.SubItemsDropdown>
+                {props.subItems.map((subItem) => <MenuStyledComponents.SubItem onClick={subItem.onClick}>{subItem.name}</MenuStyledComponents.SubItem>)}
+            </MenuStyledComponents.SubItemsDropdown>}
         </MenuStyledComponents.MenuWithSubItems>
     } else {
         menu = <MenuStyledComponents.Menu>
