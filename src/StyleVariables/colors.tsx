@@ -1,3 +1,8 @@
+const modal = {
+    background: '#FFFFFF',
+    header: '#000000'
+}
+
 const colors = {
     grey: '#ccc',
     background: '#494949',
@@ -6,7 +11,7 @@ const colors = {
     sidebar: '#000000',
     white: '#FFFFFF',
     shadow: 'rgba(66, 66, 66, 0.8)',
-    modal: '#FFFFFF'
+    modal
 }
 
 export default colors;

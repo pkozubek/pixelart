@@ -7,5 +7,5 @@ export {
     topBarHeight,
     bodyContainerHeight,
     sideBarWidth,
-    workingSpaceWidth
+    workingSpaceWidth,
 }

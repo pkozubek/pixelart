@@ -22,7 +22,13 @@ const Header = () => {
 
     return <HeaderStyledComponents.Header>
         {menus.map(menu => <Menu {...menu} />)}
-        {<Modal visibilityHandler={newPixelArtModalVisiblityHandler} visible={newPixelArtModalVisible} content='New pixel Art' />}
+        {<Modal buttons={[
+            {
+                name: 'ok',
+                key: 'ok',
+                action: () => console.log('ok')
+            }
+        ]} title='New Pixelart' visibilityHandler={newPixelArtModalVisiblityHandler} visible={newPixelArtModalVisible} content='New pixel Art' />}
     </HeaderStyledComponents.Header>
 }
 
