@@ -1,11 +1,4 @@
-const topBarHeight = '36px';
-const bodyContainerHeight = `calc(100% - ${topBarHeight})`;
-const sideBarWidth = '200px';
-const workingSpaceWidth = `calc(100% - ${sideBarWidth})`;
+const topBarHeight = "36px";
+const bodyContainerHeight = `calc(80% - ${topBarHeight})`;
 
-export {
-    topBarHeight,
-    bodyContainerHeight,
-    sideBarWidth,
-    workingSpaceWidth,
-}
+export { topBarHeight, bodyContainerHeight };
