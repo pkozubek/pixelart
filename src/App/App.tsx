@@ -5,12 +5,12 @@ import StyledApp from "./StyledApp";
 import ToolBar from "../UI/ToolBar/ToolBar";
 import GlobalStyle from "./GlobalStyle";
 import PixelGrid from "../PixelGrid/PixelGrid";
-import { ColorContextProvider } from "../context/ColorContext";
+import { EditorContextContextProvider } from "../context/EditorContext";
 
 const App = () => {
   return (
     <PixelContextProvider>
-      <ColorContextProvider>
+      <EditorContextContextProvider>
         <GlobalStyle />
         <StyledApp.App>
           <Header />
@@ -19,7 +19,7 @@ const App = () => {
             <PixelGrid />
           </StyledApp.WorkingSpace>
         </StyledApp.App>
-      </ColorContextProvider>
+      </EditorContextContextProvider>
     </PixelContextProvider>
   );
 };

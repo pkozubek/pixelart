@@ -1,28 +1,24 @@
 import React, { useContext } from "react";
-import { defaultPallet } from "../../consts";
-import ColorContext from "../../context/ColorContext";
 import StyledToolBar from "./StyledToolBar";
 import ToolBarButton from "./ToolBarButton/ToolBarButton";
 import { MdFormatPaint } from "react-icons/md";
-import StyledToolBarButton from "./ToolBarButton/StyledToolBarButton";
+import ColorPalette from "./ColorPalette/ColorPalette";
+import { editorMods } from "../../consts";
+import EditorContext from "../../context/EditorContext";
 
 const SideBar = () => {
-  const { pickedColor, setPickedColors } = useContext(ColorContext);
-
-  const onColorLeftClick = (newColor: string) =>
-    setPickedColors([newColor, pickedColor[1]]);
-
-  const onColorRightClick = (newColor: string) =>
-    setPickedColors([pickedColor[0], newColor]);
+  const { editorMode } = useContext(EditorContext);
 
   const buttons = [
     {
       icon: <MdFormatPaint />,
-      name: "test",
+      name: "paint",
+      editorMode: editorMods.PAINT,
     },
     {
       icon: <MdFormatPaint />,
-      name: "test2",
+      name: "fill",
+      editorMode: editorMods.FILL,
     },
   ];
 
@@ -30,18 +26,13 @@ const SideBar = () => {
     <StyledToolBar.SideBar>
       <StyledToolBar.ButtonsContainer>
         {buttons.map((button) => (
-          <ToolBarButton {...button} />
-        ))}
-      </StyledToolBar.ButtonsContainer>
-      <StyledToolBar.ColorContainer>
-        {defaultPallet.map((color) => (
-          <StyledToolBar.ColorRectangle
-            onClick={() => onColorLeftClick(color)}
-            onContextMenu={() => onColorRightClick(color)}
-            color={color}
+          <ToolBarButton
+            {...button}
+            isActive={editorMode === button.editorMode}
           />
         ))}
-      </StyledToolBar.ColorContainer>
+      </StyledToolBar.ButtonsContainer>
+      <ColorPalette />
     </StyledToolBar.SideBar>
   );
 };

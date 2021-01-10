@@ -1,25 +1,12 @@
 import styled from "styled-components";
 import colors from "../../StyleVariables/colors";
+import { toolBarHeight } from "../../StyleVariables/size";
 
 const SideBar = styled.div`
-  height: 20%;
+  height: ${toolBarHeight};
   width: 100%;
-  background: ${colors.sidebar};
-  color: ${colors.white};
+  background: ${colors.toolBar};
   display: flex;
-`;
-
-const ColorContainer = styled.div`
-  border: 1px solid ${colors.white};
-  width: 10%;
-  margin-left: auto;
-  display: flex;
-`;
-
-const ColorRectangle = styled.div`
-  width: 30px;
-  height: 30px;
-  background: ${({ color }) => color};
 `;
 
 const ButtonsContainer = styled.div`
@@ -31,8 +18,6 @@ const ButtonsContainer = styled.div`
 
 const StyledSideBar = {
   SideBar,
-  ColorRectangle,
-  ColorContainer,
   ButtonsContainer,
 };
 

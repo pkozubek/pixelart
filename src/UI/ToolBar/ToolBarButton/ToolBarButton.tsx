@@ -1,16 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
+import { editorMods } from "../../../consts";
+import EditorContext from "../../../context/EditorContext";
 import StyledToolBarButton from "./StyledToolBarButton";
 
 interface ToolBarButtonProps {
   icon: any;
   name: string;
+  editorMode: editorMods;
+  isActive: boolean;
 }
 
-const ToolBarButton = ({ icon, name }: ToolBarButtonProps) => {
+const ToolBarButton = (props: ToolBarButtonProps) => {
+  const { changeEditorMode } = useContext(EditorContext);
+
+  const onButtonClick = () => changeEditorMode(props.editorMode);
+
   return (
-    <StyledToolBarButton.Button>
-      {icon}
-      <p>{name}</p>
+    <StyledToolBarButton.Button
+      isActive={props.isActive}
+      onClick={onButtonClick}
+    >
+      {props.icon}
+      <p>{props.name}</p>
     </StyledToolBarButton.Button>
   );
 };

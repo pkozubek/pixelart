@@ -1,19 +1,32 @@
 import React, { useContext, useState } from "react";
-import ColorContext from "../context/ColorContext";
+import { editorMods } from "../consts";
+import EditorContext from "../context/EditorContext";
 import { PixelContext } from "../context/PixelContext";
 import { StyledPixelGrid } from "./StyledPixelGrid";
 
 const PixelGrid = () => {
-  const { pickedColor } = useContext(ColorContext);
+  const { pickedColor, editorMode } = useContext(EditorContext);
   const { pixelTable, rows, columns, pixelSize, setPixel } = useContext(
     PixelContext
   );
 
   const [isMouseClicked, setMouseClicked] = useState(false);
 
-  const onMouseOverTile = (rowIndex, columnIndex) => {
-    if (isMouseClicked && pixelTable[columnIndex][rowIndex] !== pickedColor[0])
-      setPixel(pickedColor[0], rowIndex, columnIndex);
+  const onMouseOverTile = (rowIndex: number, columnIndex: number) => {
+    if (
+      editorMode === editorMods.PAINT &&
+      isMouseClicked &&
+      pixelTable[columnIndex][rowIndex] !== pickedColor
+    )
+      setPixel(pickedColor, rowIndex, columnIndex);
+  };
+
+  const onPixelTileClick = (rowIndex: number, columnIndex: number) => {
+    switch (editorMode) {
+      case editorMods.PAINT:
+        setPixel(pickedColor, rowIndex, columnIndex);
+        break;
+    }
   };
 
   return (
@@ -27,7 +40,7 @@ const PixelGrid = () => {
       {pixelTable.map((pixelRow, columnIndex) =>
         pixelRow.map((pixelColor, rowIndex) => (
           <StyledPixelGrid.Pixel
-            onClick={() => setPixel(pickedColor[0], rowIndex, columnIndex)}
+            onClick={() => onPixelTileClick(rowIndex, columnIndex)}
             onMouseMove={() => onMouseOverTile(rowIndex, columnIndex)}
             pixelSize={pixelSize}
             color={pixelColor}

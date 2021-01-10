@@ -1,4 +1,6 @@
 const topBarHeight = "36px";
-const bodyContainerHeight = `calc(80% - ${topBarHeight})`;
+const toolBarHeight = "100px";
+const toolBarButtonSize = "60px";
+const bodyContainerHeight = `calc(100% - ${topBarHeight} - ${toolBarHeight})`;
 
-export { topBarHeight, bodyContainerHeight };
+export { topBarHeight, bodyContainerHeight, toolBarHeight, toolBarButtonSize };
