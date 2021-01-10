@@ -1,8 +1,8 @@
 import React from "react";
-import Header from "../UI/Header/Header";
+import Header from "../Header/Header";
 import { PixelContextProvider } from "../context/PixelContext";
 import StyledApp from "./StyledApp";
-import ToolBar from "../UI/ToolBar/ToolBar";
+import ToolBar from "../ToolBar/ToolBar";
 import GlobalStyle from "./GlobalStyle";
 import PixelGrid from "../PixelGrid/PixelGrid";
 import { EditorContextContextProvider } from "../context/EditorContext";

@@ -14,6 +14,6 @@ export const defaultPallet = [
 export enum editorMods {
     PAINT = 'paint',
     FILL = 'fill',
-    COLOR_PICKER = 'colorPicker',
+    COLOR_SELECTOR = 'colorSelector',
     RUBBER = 'rubber'
 }

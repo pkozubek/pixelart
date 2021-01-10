@@ -1,9 +1,10 @@
 import styled from "styled-components";
-import { toolBarButtonSize } from "../../../StyleVariables/size";
+import { toolBarButtonSize } from "../../StyleVariables/size";
 
 const Button = styled.div`
   height: 100%;
   color: ${({ isActive }) => (isActive ? "blue" : "black")};
+  transition: color 1s;
 
   svg {
     width: ${toolBarButtonSize};

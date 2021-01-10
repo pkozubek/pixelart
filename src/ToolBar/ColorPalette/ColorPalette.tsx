@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import EditorContext from "../../../context/EditorContext";
+import EditorContext from "../../context/EditorContext";
 import StyledColorPalette from "./StyledColorPalette";
-import { defaultPallet } from "../../../consts";
+import { defaultPallet } from "../../consts";
 
 const ColorPallete = () => {
   const { setPickedColors, pickedColor } = useContext(EditorContext);

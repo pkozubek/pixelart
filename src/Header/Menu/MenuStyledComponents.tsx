@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import colors from "../../../StyleVariables/colors";
+import colors from "../../StyleVariables/colors";
 
 const Menu = styled.div`
   width: 80px;

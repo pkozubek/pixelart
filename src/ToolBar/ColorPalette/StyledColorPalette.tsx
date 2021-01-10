@@ -1,17 +1,17 @@
 import styled from "styled-components";
-import colors from "../../../StyleVariables/colors";
+import colors from "../../StyleVariables/colors";
 
 const ColorRectangle = styled.div`
   width: 30px;
   height: 30px;
-  border: ${(props) => (props.isPicked ? "1px solid yellow" : "none")};
+  margin: 2px;
+  border: ${(props) =>
+    props.isPicked ? "1px solid yellow" : "1px solid black"};
   background: ${({ color }) => color};
 `;
 
 const ColorContainer = styled.div`
-  border: 1px solid ${colors.white};
-  width: 10%;
-  margin-left: auto;
+  width: 300px;
   display: flex;
 `;
 
