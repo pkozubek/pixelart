@@ -1,5 +1,5 @@
 const topBarHeight = "36px";
-const toolBarHeight = "100px";
+const toolBarHeight = "120px";
 const toolBarButtonSize = "60px";
 const bodyContainerHeight = `calc(100% - ${topBarHeight} - ${toolBarHeight})`;
 

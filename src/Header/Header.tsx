@@ -24,7 +24,7 @@ const Header = () => {
   return (
     <HeaderStyledComponents.Header>
       {menus.map((menu) => (
-        <Menu {...menu} />
+        <Menu key={menu.name} {...menu} />
       ))}
       {
         <Modal

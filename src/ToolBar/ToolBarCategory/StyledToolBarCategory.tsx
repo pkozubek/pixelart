@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Category = styled.div`
   width: auto;
-  margin-left: 5px;
+  padding: 0 10px 0 10px;
   border-right: 1px solid black;
 `;
 

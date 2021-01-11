@@ -36,6 +36,7 @@ const SideBar = () => {
       <ToolBarCategory name="modes">
         {buttons.map((button) => (
           <ToolBarButton
+            key={button.name}
             {...button}
             isActive={editorMode === button.editorMode}
           />

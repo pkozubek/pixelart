@@ -9,6 +9,7 @@ interface ToolBarButtonProps {
   name: string;
   editorMode: editorMods;
   isActive: boolean;
+  key?: string;
 }
 
 const ToolBarButton = (props: ToolBarButtonProps) => {

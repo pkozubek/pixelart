@@ -1,15 +1,17 @@
 import React, { useContext } from "react";
 import EditorContext from "../../context/EditorContext";
 import StyledColorPalette from "./StyledColorPalette";
-import { defaultPallet } from "../../consts";
 
 const ColorPallete = () => {
-  const { setPickedColors, pickedColor } = useContext(EditorContext);
+  const { setPickedColors, pickedColor, colorPalette } = useContext(
+    EditorContext
+  );
 
   return (
     <StyledColorPalette.ColorContainer>
-      {defaultPallet.map((color) => (
+      {colorPalette.map((color, index) => (
         <StyledColorPalette.ColorRectangle
+          key={`${color}-${index}`}
           onClick={() => setPickedColors(color)}
           isPicked={color === pickedColor}
           color={color}
