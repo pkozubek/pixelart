@@ -67,6 +67,11 @@ export const PixelContextProvider = (props: IPixelContextProvider) => {
     } else return null;
   }, []);
 
+  const resetUndoAndRevert = () => {
+    setRevertedPixelArray([]);
+    setPreviousPixelArray([]);
+  };
+
   const undoLastAction = () => {
     const result = removeLastArrayElementAndReturn(previousPixelArray);
     if (result) {
@@ -106,6 +111,7 @@ export const PixelContextProvider = (props: IPixelContextProvider) => {
         isUndoPossible,
         undoLastAction,
         revertLastUndo,
+        resetUndoAndRevert,
       }}
     >
       {props.children}

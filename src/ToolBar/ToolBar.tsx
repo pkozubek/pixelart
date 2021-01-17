@@ -14,10 +14,12 @@ import {
   FaRedo,
   FaSave,
   FaFolderOpen,
+  FaEraser,
 } from "react-icons/fa";
-import { IoMdColorFill } from "react-icons/io";
+import { IoMdColorFill, IoIosColorPalette } from "react-icons/io";
 import { CgColorPicker } from "react-icons/cg";
 import { loadPixelArray, savePixelArray } from "../utils/storage";
+import ColorPicker from "../UI/ColorPicker/ColorPicker";
 
 const SideBar = () => {
   const { editorMode, changeEditorMode } = useContext(EditorContext);
@@ -28,6 +30,7 @@ const SideBar = () => {
     isUndoPossible,
     pixelTable,
     setPixelArray,
+    resetUndoAndRevert,
   } = useContext(PixelContext);
 
   const onButtonClick = useCallback(
@@ -35,13 +38,14 @@ const SideBar = () => {
     []
   );
 
-  const onSaveClick = useCallback(() => savePixelArray(pixelTable), [
-    pixelTable,
-  ]);
+  const onSaveClick = useCallback(() => {
+    savePixelArray(pixelTable);
+  }, [pixelTable]);
 
   const onLoadClick = useCallback(() => {
     const pixelArr = loadPixelArray();
     pixelArr && setPixelArray(pixelArr);
+    resetUndoAndRevert();
   }, []);
 
   const modeButtons = [
@@ -49,6 +53,11 @@ const SideBar = () => {
       icon: <FaPaintBrush />,
       name: "paint",
       editorMode: editorMods.PAINT,
+    },
+    {
+      icon: <FaEraser />,
+      name: "eraser",
+      editorMode: editorMods.ERASER,
     },
     {
       icon: <IoMdColorFill />,
@@ -106,6 +115,7 @@ const SideBar = () => {
       </ToolBarCategory>
       <ToolBarCategory name="color">
         <ColorPalette />
+        <ColorPicker />
       </ToolBarCategory>
     </StyledToolBar.ToolBar>
   );

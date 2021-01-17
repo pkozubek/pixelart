@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { editorMods } from "../consts";
+import { baseColor, editorMods } from "../consts";
 import EditorContext from "../context/EditorContext";
 import { PixelContext } from "../context/PixelContext";
 import { StyledPixelGrid } from "./StyledPixelGrid";
@@ -14,17 +14,24 @@ const PixelGrid = () => {
 
   const onMouseOverTile = (rowIndex: number, columnIndex: number) => {
     if (
-      editorMode === editorMods.PAINT &&
-      isMouseClicked &&
-      pixelTable[columnIndex][rowIndex] !== pickedColor
-    )
-      setPixel(pickedColor, rowIndex, columnIndex);
+      (editorMode === editorMods.PAINT || editorMode === editorMods.ERASER) &&
+      isMouseClicked
+    ) {
+      let targetColor = pickedColor;
+      if (editorMode === editorMods.ERASER) targetColor = baseColor;
+
+      if (pixelTable[columnIndex][rowIndex] !== targetColor)
+        setPixel(targetColor, rowIndex, columnIndex);
+    }
   };
 
   const onPixelTileClick = (rowIndex: number, columnIndex: number) => {
     switch (editorMode) {
       case editorMods.PAINT:
         setPixel(pickedColor, rowIndex, columnIndex);
+        break;
+      case editorMods.ERASER:
+        setPixel(baseColor, rowIndex, columnIndex);
         break;
     }
   };

@@ -1,7 +1,7 @@
 import React, { createContext, useState, ReactChildren } from "react";
-import { editorMods } from "../consts/index";
+import { editorMods, baseColor } from "../consts/index";
 
-const numberOfColorsInPallette = 30;
+const numberOfColorsInPallette = 29;
 export const EditorContext = createContext(null);
 
 interface IPixelContextProvider {
@@ -23,12 +23,12 @@ export const EditorContextContextProvider = (props: IPixelContextProvider) => {
   );
 
   const [editorMode, changeEditorMode] = useState<editorMods>(editorMods.PAINT);
-  const [colorPalette, setColorPalette] = useState<string[]>(
-    generatedColorArray
-  );
-  const [pickedColor, setPickedColors] = useState<string>(
-    generatedColorArray[0]
-  );
+  const [colorPalette, setColorPalette] = useState<string[]>([
+    baseColor,
+    ...generatedColorArray,
+  ]);
+
+  const [pickedColor, setPickedColors] = useState<string>(baseColor);
 
   const replaceColor = (index: number, color: string) => {
     const newColorPallete = [...colorPalette];
