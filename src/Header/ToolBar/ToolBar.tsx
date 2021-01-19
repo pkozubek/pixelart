@@ -1,12 +1,11 @@
 import React, { useContext, useCallback } from "react";
 
-import { editorMods } from "../consts";
-import StyledToolBar from "./StyledToolBar";
+import { editorMods } from "../../consts";
 import ToolBarButton from "./ToolBarButton/ToolBarButton";
 import ColorPalette from "./ColorPalette/ColorPalette";
-import EditorContext from "../context/EditorContext";
+import EditorContext from "../../context/EditorContext";
 import ToolBarCategory from "./ToolBarCategory/ToolBarCategory";
-import { PixelContext } from "../context/PixelContext";
+import { PixelContext } from "../../context/PixelContext";
 
 import {
   FaPaintBrush,
@@ -16,10 +15,12 @@ import {
   FaFolderOpen,
   FaEraser,
 } from "react-icons/fa";
-import { IoMdColorFill, IoIosColorPalette } from "react-icons/io";
+
+import { IoMdColorFill } from "react-icons/io";
 import { CgColorPicker } from "react-icons/cg";
-import { loadPixelArray, savePixelArray } from "../utils/storage";
-import ColorPicker from "../UI/ColorPicker/ColorPicker";
+import { loadPixelArray, savePixelArray } from "../../utils/storage";
+
+import ColorPicker from "../../UI/ColorPicker/ColorPicker";
 
 const SideBar = () => {
   const { editorMode, changeEditorMode } = useContext(EditorContext);
@@ -97,7 +98,7 @@ const SideBar = () => {
   ];
 
   return (
-    <StyledToolBar.ToolBar>
+    <>
       <ToolBarCategory name="Picture">
         {pictureStateButtons.map((stateButton) => (
           <ToolBarButton {...stateButton} key={stateButton.name} />
@@ -117,7 +118,7 @@ const SideBar = () => {
         <ColorPalette />
         <ColorPicker />
       </ToolBarCategory>
-    </StyledToolBar.ToolBar>
+    </>
   );
 };
 

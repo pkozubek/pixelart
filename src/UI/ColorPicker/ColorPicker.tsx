@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ChromePicker } from "react-color";
 import { IoIosColorPalette } from "react-icons/io";
-import ToolBarButton from "../../ToolBar/ToolBarButton/ToolBarButton";
+import ToolBarButton from "../../Header/ToolBar/ToolBarButton/ToolBarButton";
 import StyledColorPicker from "./StyledColorPicker";
 
 const ColorPicker = () => {

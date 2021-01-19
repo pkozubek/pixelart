@@ -1,47 +1,39 @@
-import React, { useState } from "react";
-import Menu from "./Menu/Menu";
-import HeaderStyledComponents from "./HeaderStyledComponents";
-import Modal from "../UI/Modal/Modal";
+import React, { useState, useCallback } from "react";
+import StyledHeader from "./StyledHeader";
+import Toolbar from "./ToolBar/ToolBar";
+import Configuration from "./Configuration/Configuration";
+import NewPixelArt from "./NewPixelArt/NewPixelArt";
 
 const Header = () => {
-  const [newPixelArtModalVisible, setNewPixelArtModalVisible] = useState(false);
+  const [selectedTab, setSelectedTab] = useState("ToolBar");
 
-  const newPixelArtModalVisiblityHandler = () =>
-    setNewPixelArtModalVisible(!newPixelArtModalVisible);
+  const tabs = ["ToolBar", "Configure"];
 
-  const menus = [
-    {
-      name: "PixelArt",
-      subItems: [
-        { name: "New PixelArt", onClick: newPixelArtModalVisiblityHandler },
-      ],
-    },
-    {
-      name: "Configure",
-    },
-  ];
+  const renderContent = useCallback(() => {
+    switch (selectedTab) {
+      case "ToolBar":
+        return <Toolbar />;
+      case "Configuration":
+        return <Configuration />;
+    }
+  }, [selectedTab]);
 
   return (
-    <HeaderStyledComponents.Header>
-      {menus.map((menu) => (
-        <Menu key={menu.name} {...menu} />
-      ))}
-      {
-        <Modal
-          buttons={[
-            {
-              name: "ok",
-              key: "ok",
-              action: () => console.log("ok"),
-            },
-          ]}
-          title="New Pixelart"
-          visibilityHandler={newPixelArtModalVisiblityHandler}
-          visible={newPixelArtModalVisible}
-          content="New pixel Art"
-        />
-      }
-    </HeaderStyledComponents.Header>
+    <header>
+      <StyledHeader.TabContainer>
+        <NewPixelArt />
+        {tabs.map((name) => (
+          <StyledHeader.Tab
+            isActive={selectedTab === name}
+            key={name}
+            onClick={() => setSelectedTab(name)}
+          >
+            {name}
+          </StyledHeader.Tab>
+        ))}
+      </StyledHeader.TabContainer>
+      <StyledHeader.TabContent>{renderContent()}</StyledHeader.TabContent>
+    </header>
   );
 };
 

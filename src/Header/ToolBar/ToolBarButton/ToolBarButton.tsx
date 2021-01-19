@@ -1,6 +1,6 @@
 import React from "react";
 import StyledToolBarButton from "./StyledToolBarButton";
-import Tooltip from "../../UI/Tooltip/Tooltip";
+import Tooltip from "../../../UI/Tooltip/Tooltip";
 
 interface ToolBarButtonProps {
   icon: any;
