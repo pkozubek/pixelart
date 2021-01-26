@@ -40,6 +40,8 @@ export const PixelContextProvider = (props: IPixelContextProvider) => {
     });
   };
 
+  const resetPixelArray = () => setPixelArray(defaultPixelTable);
+
   const setPixel = (color: string, row: number, column: number) => {
     const newPixelTable = [...state.pixelTable];
     setPreviousPixelArray([...previousPixelArray, state.pixelTable]);
@@ -112,6 +114,7 @@ export const PixelContextProvider = (props: IPixelContextProvider) => {
         undoLastAction,
         revertLastUndo,
         resetUndoAndRevert,
+        resetPixelArray,
       }}
     >
       {props.children}

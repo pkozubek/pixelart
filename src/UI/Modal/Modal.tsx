@@ -1,7 +1,7 @@
 import React from "react";
 import { createPortal } from "react-dom";
 import Shadow from "../Shadow/Shadow";
-import ModalStyledComponents from "./ModalStyledComponents";
+import ModalStyledComponents from "./StyledModalComponents";
 import { AiFillCloseCircle } from "react-icons/ai";
 
 interface IModalButton {
@@ -11,8 +11,8 @@ interface IModalButton {
 }
 
 interface IModalProps {
-  visible: boolean;
-  content: string;
+  visible: Boolean;
+  content: any;
   title: string;
   buttons?: IModalButton[];
   visibilityHandler: () => void;
@@ -40,7 +40,9 @@ const Modal = (props: IModalProps) => {
               <AiFillCloseCircle />
             </ModalStyledComponents.CloseIcon>
           </ModalStyledComponents.Title>
-          <ModalStyledComponents.Content>
+          <ModalStyledComponents.Content
+            isString={typeof props.content === "string"}
+          >
             {props.content}
           </ModalStyledComponents.Content>
           <ModalStyledComponents.Actions>

@@ -60,8 +60,12 @@ const CloseIcon = styled.span`
 `;
 
 const Content = styled.div`
-    width: 100%;
+    width: 90%;
+    margin: auto;
     height: ${modalSize.content};
+    font-size: 1.2em;
+    display: ${({isString}) => isString && 'flex'};
+    align-items: ${({isString}) => isString && 'center'}
 `
 
 const Actions = styled.div`
