@@ -29,7 +29,7 @@ const SideBar = () => {
     revertLastUndo,
     isRevertPossible,
     isUndoPossible,
-    pixelTable,
+    pixelArray,
     setPixelArray,
     resetUndoAndRevert,
   } = useContext(PixelContext);
@@ -40,8 +40,8 @@ const SideBar = () => {
   );
 
   const onSaveClick = useCallback(() => {
-    savePixelArray(pixelTable);
-  }, [pixelTable]);
+    savePixelArray(pixelArray);
+  }, [pixelArray]);
 
   const onLoadClick = useCallback(() => {
     const pixelArr = loadPixelArray();

@@ -6,7 +6,7 @@ import { StyledPixelGrid } from "./StyledPixelGrid";
 
 const PixelGrid = () => {
   const { pickedColor, editorMode } = useContext(EditorContext);
-  const { pixelTable, rows, columns, pixelSize, setPixel } = useContext(
+  const { pixelArray, rows, columns, pixelSize, setPixel } = useContext(
     PixelContext
   );
 
@@ -20,7 +20,7 @@ const PixelGrid = () => {
       let targetColor = pickedColor;
       if (editorMode === editorMods.ERASER) targetColor = baseColor;
 
-      if (pixelTable[columnIndex][rowIndex] !== targetColor)
+      if (pixelArray[columnIndex][rowIndex] !== targetColor)
         setPixel(targetColor, rowIndex, columnIndex);
     }
   };
@@ -38,13 +38,13 @@ const PixelGrid = () => {
 
   return (
     <StyledPixelGrid.PixelGrid
-      rows={rows}
-      columns={columns}
+      rows={columns}
+      columns={rows}
       pixelSize={pixelSize}
       onMouseDown={() => setMouseClicked(true)}
       onMouseUp={() => setMouseClicked(false)}
     >
-      {pixelTable.map((pixelRow, columnIndex) =>
+      {pixelArray.map((pixelRow, columnIndex) =>
         pixelRow.map((pixelColor, rowIndex) => (
           <StyledPixelGrid.Pixel
             key={`pixel-${columnIndex}-${rowIndex}`}

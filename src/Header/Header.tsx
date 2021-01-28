@@ -7,7 +7,7 @@ import NewPixelArt from "./NewPixelArt/NewPixelArt";
 const Header = () => {
   const [selectedTab, setSelectedTab] = useState("ToolBar");
 
-  const tabs = ["ToolBar", "Configure"];
+  const tabs = ["ToolBar", "Configuration"];
 
   const renderContent = useCallback(() => {
     switch (selectedTab) {

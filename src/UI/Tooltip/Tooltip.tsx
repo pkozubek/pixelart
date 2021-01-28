@@ -2,7 +2,7 @@ import React, { ReactChildren } from "react";
 import StyledTooltip from "./StyledTooltip";
 
 interface TooltipProps {
-  children?: ReactChildren;
+  children: JSX.Element;
   text: string;
 }
 

@@ -2,11 +2,21 @@ import React, { createContext, useState, ReactChildren } from "react";
 import { editorMods, baseColor } from "../consts/index";
 
 const numberOfColorsInPallette = 29;
-export const EditorContext = createContext(null);
 
-interface IPixelContextProvider {
-  children?: ReactChildren;
+interface IEditorContextProviderProps {
+  children: JSX.Element[];
 }
+
+interface IEditorContext {
+  colorPalette: string[];
+  replaceColor: (index: number, color: string) => void;
+  pickedColor: string;
+  setPickedColors: (color: string) => void;
+  editorMode: editorMods;
+  changeEditorMode: (mode: editorMods) => void;
+}
+
+export const EditorContext = createContext<IEditorContext>(null);
 
 const generateRandomColor = () => {
   const letters = "0123456789ABCDEF";
@@ -17,7 +27,9 @@ const generateRandomColor = () => {
   return color;
 };
 
-export const EditorContextContextProvider = (props: IPixelContextProvider) => {
+export const EditorContextContextProvider = (
+  props: IEditorContextProviderProps
+) => {
   const generatedColorArray = [...Array(numberOfColorsInPallette)].map((i) =>
     generateRandomColor()
   );
