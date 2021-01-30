@@ -39,6 +39,8 @@ export const EditorContextContextProvider = (
     baseColor,
     ...generatedColorArray,
   ]);
+  const [isNetVisible, setNetVisible] = useState(false);
+  const [isFooterVisible, setFooterVisible] = useState(false);
 
   const [pickedColor, setPickedColors] = useState<string>(baseColor);
 

@@ -19,7 +19,7 @@ export const useModal = ({initialVisibility, onConfirmation}: useModalProps):use
     const showModal = useCallback(() => setModalVisble(true), []);
     const hideModal = useCallback(() => setModalVisble(false), []);
     const confirmationHandler = useCallback(() => {
-        onConfirmation && onConfirmation();        
+        onConfirmation && onConfirmation();   
         hideModal();
     }, [onConfirmation])
 

@@ -1,4 +1,4 @@
-import React, { SyntheticEvent } from "react";
+import React from "react";
 import * as Styled from "./StyledConfigurationType";
 
 interface IConfigurationTypeProps {
@@ -20,8 +20,19 @@ const ConfigurationType = (props: IConfigurationTypeProps) => {
         <span>{props.text}</span>
       </Styled.Icon>
       <Styled.InputContainer>
-        <Styled.Range min={1} type="range" onChange={onInputChange} />
-        <Styled.Input min={1} value={props.value} onChange={onInputChange} />
+        <Styled.Range
+          min={1}
+          max={50}
+          value={props.value}
+          type="range"
+          onChange={onInputChange}
+        />
+        <Styled.Input
+          min={1}
+          max={50}
+          value={props.value}
+          onChange={onInputChange}
+        />
       </Styled.InputContainer>
     </Styled.Container>
   );

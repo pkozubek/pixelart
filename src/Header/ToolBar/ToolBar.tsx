@@ -4,7 +4,7 @@ import { editorMods } from "../../consts";
 import ToolBarButton from "./ToolBarButton/ToolBarButton";
 import ColorPalette from "./ColorPalette/ColorPalette";
 import EditorContext from "../../context/EditorContext";
-import ToolBarCategory from "./ToolBarCategory/ToolBarCategory";
+import Category from "../Category/Category";
 import { PixelContext } from "../../context/PixelContext";
 
 import {
@@ -99,12 +99,12 @@ const SideBar = () => {
 
   return (
     <>
-      <ToolBarCategory name="Picture">
+      <Category name="Picture">
         {pictureStateButtons.map((stateButton) => (
           <ToolBarButton {...stateButton} key={stateButton.name} />
         ))}
-      </ToolBarCategory>
-      <ToolBarCategory name="modes">
+      </Category>
+      <Category name="modes">
         {modeButtons.map((modeButton) => (
           <ToolBarButton
             {...modeButton}
@@ -113,11 +113,11 @@ const SideBar = () => {
             isActive={editorMode === modeButton.editorMode}
           />
         ))}
-      </ToolBarCategory>
-      <ToolBarCategory name="color">
+      </Category>
+      <Category name="color">
         <ColorPalette />
         <ColorPicker />
-      </ToolBarCategory>
+      </Category>
     </>
   );
 };

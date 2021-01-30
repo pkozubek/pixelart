@@ -3,6 +3,7 @@ import { PixelContext } from "../../context/PixelContext";
 import ConfigurationType from "./ConfigurationType/ConfigurationType";
 import { GiResize } from "react-icons/gi";
 import { AiOutlineColumnHeight, AiOutlineColumnWidth } from "react-icons/ai";
+import Category from "../Category/Category";
 
 const Configuration = () => {
   const {
@@ -11,27 +12,34 @@ const Configuration = () => {
     columns,
     setPixelSize,
     setPixelColumns,
+    setPixelRows,
   } = useContext(PixelContext);
 
   return (
     <>
-      <ConfigurationType
-        text="size"
-        icon={<GiResize />}
-        value={pixelSize}
-        onChange={setPixelSize}
-      />
-      <ConfigurationType
-        text="width"
-        icon={<AiOutlineColumnWidth />}
-        value={rows}
-      />
-      <ConfigurationType
-        text="height"
-        icon={<AiOutlineColumnHeight />}
-        value={columns}
-        onChange={setPixelColumns}
-      />
+      <Category name="Size definition">
+        <ConfigurationType
+          text="size"
+          icon={<GiResize />}
+          value={pixelSize}
+          onChange={setPixelSize}
+        />
+        <ConfigurationType
+          key="width"
+          text="width"
+          icon={<AiOutlineColumnWidth />}
+          value={rows}
+          onChange={setPixelRows}
+        />
+        <ConfigurationType
+          key="height"
+          text="height"
+          icon={<AiOutlineColumnHeight />}
+          value={columns}
+          onChange={setPixelColumns}
+        />
+      </Category>
+      <Category name="Display options"></Category>
     </>
   );
 };
