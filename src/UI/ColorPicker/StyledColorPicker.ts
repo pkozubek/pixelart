@@ -7,10 +7,10 @@ const Popover = styled.div`
 
 const Cover = styled.div`
       position: fixed;
-      top: 0px;
+      top: ${({top}) => top ? `${top}px` : '0px'};
       right: 0px;
       bottom: 0px;
-      left: 0px;
+      left: ${({left}) => left ? `${left}px` : '0px'};
 `;
 
 const StyledColorPicker = {

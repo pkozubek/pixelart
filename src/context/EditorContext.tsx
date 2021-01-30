@@ -11,9 +11,10 @@ interface IEditorContext {
   colorPalette: string[];
   replaceColor: (index: number, color: string) => void;
   pickedColor: string;
-  setPickedColors: (color: string) => void;
   editorMode: editorMods;
   changeEditorMode: (mode: editorMods) => void;
+  indexOfSelectedColor: number;
+  changeIndexOfSelectedColor: (index: number) => void;
 }
 
 export const EditorContext = createContext<IEditorContext>(null);
@@ -39,10 +40,7 @@ export const EditorContextContextProvider = (
     baseColor,
     ...generatedColorArray,
   ]);
-  const [isNetVisible, setNetVisible] = useState(false);
-  const [isFooterVisible, setFooterVisible] = useState(false);
-
-  const [pickedColor, setPickedColors] = useState<string>(baseColor);
+  const [indexOfSelectedColor, changeIndexOfSelectedColor] = useState(0);
 
   const replaceColor = (index: number, color: string) => {
     const newColorPallete = [...colorPalette];
@@ -55,10 +53,11 @@ export const EditorContextContextProvider = (
       value={{
         colorPalette,
         replaceColor,
-        pickedColor,
-        setPickedColors,
+        pickedColor: colorPalette[indexOfSelectedColor],
         editorMode,
         changeEditorMode,
+        indexOfSelectedColor,
+        changeIndexOfSelectedColor,
       }}
     >
       {props.children}

@@ -3,7 +3,7 @@ import EditorContext from "../../../context/EditorContext";
 import StyledColorPalette from "./StyledColorPalette";
 
 const ColorPallete = () => {
-  const { setPickedColors, pickedColor, colorPalette } = useContext(
+  const { pickedColor, colorPalette, changeIndexOfSelectedColor } = useContext(
     EditorContext
   );
 
@@ -12,7 +12,7 @@ const ColorPallete = () => {
       {colorPalette.map((color, index) => (
         <StyledColorPalette.ColorRectangle
           key={`${color}-${index}`}
-          onClick={() => setPickedColors(color)}
+          onClick={() => changeIndexOfSelectedColor(index)}
           isPicked={color === pickedColor}
           color={color}
         />
