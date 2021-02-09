@@ -27,10 +27,10 @@ const Button = styled.button`
   }
 
   &:hover {
-    border: 2px solid blue;
+    border: ${({ disabled }) => `2px solid ${disabled ? "gray" : "blue"}`};
 
     svg {
-      color: blue;
+      color: ${({ disabled }) => (disabled ? "rgba(0,0,0,0.2)" : "blue")};
     }
   }
 `;

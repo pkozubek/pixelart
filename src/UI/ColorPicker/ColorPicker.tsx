@@ -1,9 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { PhotoshopPicker } from "react-color";
 import { IoIosColorPalette } from "react-icons/io";
 import EditorContext from "../../context/EditorContext";
 import ToolBarButton from "../../Header/ToolBar/ToolBarButton/ToolBarButton";
 import StyledColorPicker from "./StyledColorPicker";
+
+const pickerWidth = 513;
 
 const ColorPicker = () => {
   const { pickedColor, indexOfSelectedColor, replaceColor } = useContext(
@@ -28,14 +30,35 @@ const ColorPicker = () => {
   const onButtonClick = ({ clientX, clientY }) => {
     setPickerLocation({
       top: clientY - 40,
-      left: clientX,
+      left: isWindowWiderThanValue(clientX + pickerWidth)
+        ? clientX
+        : window.innerWidth - pickerWidth,
     });
     setColorPickerVisile(true);
+  };
+
+  const isWindowWiderThanValue = useCallback(
+    (value: number) => window.innerWidth > value,
+    []
+  );
+
+  const onResize = () => {
+    if (!isWindowWiderThanValue(pickerLocation.left + pickerWidth)) {
+      setPickerLocation({
+        ...pickerLocation,
+        left: window.innerWidth - pickerWidth,
+      });
+    }
   };
 
   useEffect(() => {
     if (pickedColor !== localColor) setLocalColor(pickedColor);
   }, [pickedColor]);
+
+  useEffect(() => {
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
 
   return (
     <>

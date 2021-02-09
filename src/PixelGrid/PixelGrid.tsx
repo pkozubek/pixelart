@@ -5,7 +5,12 @@ import { PixelContext } from "../context/PixelContext";
 import { StyledPixelGrid } from "./StyledPixelGrid";
 
 const PixelGrid = () => {
-  const { pickedColor, editorMode } = useContext(EditorContext);
+  const {
+    pickedColor,
+    editorMode,
+    indexOfSelectedColor,
+    replaceColor,
+  } = useContext(EditorContext);
   const { pixelArray, rows, columns, pixelSize, setPixel } = useContext(
     PixelContext
   );
@@ -32,6 +37,9 @@ const PixelGrid = () => {
         break;
       case editorMods.ERASER:
         setPixel(baseColor, rowIndex, columnIndex);
+        break;
+      case editorMods.COLOR_SELECTOR:
+        replaceColor(indexOfSelectedColor, pixelArray[columnIndex][rowIndex]);
         break;
     }
   };
