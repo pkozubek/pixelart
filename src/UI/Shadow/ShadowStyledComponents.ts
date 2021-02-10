@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import colors from "../../StyleVariables/colors";
+
+const shadowColor = "rgba(66, 66, 66, 0.8)";
 
 const Shadow = styled.div`
     position: absolute;
@@ -8,7 +9,7 @@ const Shadow = styled.div`
     width: 100%;
     height: 100%;
     z-index: 99;
-    background: ${colors.shadow}
+    background: ${shadowColor}
 `;
 
 const ShadowComponents = {

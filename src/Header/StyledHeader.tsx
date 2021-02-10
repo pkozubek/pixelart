@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import colors from "../StyleVariables/colors";
-import { topBarHeight, toolBarHeight } from "../StyleVariables/size";
+import { topBarHeight, toolBarHeight, colors } from "../consts/styledVariables";
 
 const TabContainer = styled.div`
   background: ${colors.grey};

@@ -1,11 +1,12 @@
 import styled from 'styled-components';
-import colors from '../../StyleVariables/colors';
 
 const modalWith = 500;
 const modalHeight = 300;
 const modalHeader = 50;
 const modalActions = 50;
 const buttonSize = 30;
+
+const backgroundColor = "#FFFFFF";
 
 const modalPosition = {
     top: `calc(50% - ${modalHeight/2}px)`,
@@ -23,7 +24,7 @@ const modalSize = {
 const Modal = styled.div`
     width: ${modalSize.width};
     height: ${modalSize.height};
-    background: ${colors.modal.background};
+    background: ${backgroundColor};
     position: absolute;
     z-index: 100;
     top: ${modalPosition.top};
@@ -33,8 +34,8 @@ const Modal = styled.div`
 const Title = styled.div`
     width: 100%;
     height: ${modalSize.header};
-    background: ${colors.modal.header};
-    color: ${colors.white};
+    background: ${backgroundColor};
+    color: white;
     
     h2 {
         padding: 1em 0 0 1em;
@@ -42,7 +43,7 @@ const Title = styled.div`
 `
 
 const CloseIcon = styled.span`
-    color: ${colors.white};
+    color: white;
     position: absolute;
     left: calc(100% - ${(buttonSize/2)+'px'});
     top: ${-buttonSize/2}px;

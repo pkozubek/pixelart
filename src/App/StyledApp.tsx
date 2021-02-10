@@ -1,23 +1,22 @@
 import styled from "styled-components";
-import colors from "../StyleVariables/colors";
-import { bodyContainerHeight } from "../StyleVariables/size";
+import { appVariables } from "../consts/styledVariables";
 
 const App = styled.div`
   width: 100vw;
-  height: 100vh;
-  background: ${colors.background};
+  min-height: 100vh;
+  background: ${appVariables.colors.background};
 `;
 
 const BodyContainer = styled.div`
   width: 100%;
-  height: ${bodyContainerHeight};
+  height: ${appVariables.size.bodyContainerHeight};
   display: flex;
   flex-wrap: wrap;
 `;
 
 const WorkingSpace = styled.div`
   width: 100%;
-  height: ${bodyContainerHeight};
+  height: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

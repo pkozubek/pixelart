@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { toolBarButtonSize } from "../../../StyleVariables/size";
+import { toolBarButtonSize } from "../../../consts/styledVariables";
 
 const returnColor = (props) => {
   const { isActive, disabled } = props;
