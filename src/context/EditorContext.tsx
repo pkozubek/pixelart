@@ -4,7 +4,7 @@ import { editorMods, baseColor } from "../consts/index";
 const numberOfColorsInPallette = 29;
 
 interface IEditorContextProviderProps {
-  children: JSX.Element[];
+  children: JSX.Element;
 }
 
 interface IEditorContext {

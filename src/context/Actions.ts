@@ -3,7 +3,8 @@ export enum PixelActions {
     SET_PIXEL_TABLE = 'SET_PIXEL',
     SET_PIXE_SIZE = 'SET_PIXE_SIZE',
     SET_PIXEL_HEIGHT = 'SET_PIXEL_HEIGHT',
-    SET_PIXEL_WIDTH = 'SET_PIXEL_WIDTH'
+    SET_PIXEL_WIDTH = 'SET_PIXEL_WIDTH',
+    LOAD_SAVED = 'LOAD_SAVED'
 }
 
 export enum ColorActions {

@@ -46,6 +46,7 @@ const PixelGrid = () => {
 
   return (
     <StyledPixelGrid.PixelGrid
+      className="PixelGrid"
       rows={columns}
       columns={rows}
       pixelSize={pixelSize}

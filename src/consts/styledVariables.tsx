@@ -12,7 +12,7 @@ export const colors = {
 
 export const appVariables = {
   size: {
-    bodyContainerHeight: `calc(100% - ${topBarHeight} - ${toolBarHeight})`,
+    bodyContainerHeight: `calc(100vh - ${topBarHeight} - ${toolBarHeight})`,
   },
   colors: {
     background: "#494949",

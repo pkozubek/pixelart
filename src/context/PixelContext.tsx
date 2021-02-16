@@ -21,6 +21,7 @@ interface IPixelContext extends IPixelState {
   setPixelSize: (size: number) => void;
   setPixelColumns: (columns: number) => void;
   setPixelRows: (rows: number) => void;
+  setPixelArtFromStorage: (item) => void;
 }
 
 export const PixelContext = createContext<IPixelContext>(null);
@@ -41,9 +42,10 @@ export const PixelContextProvider = ({
 }: IPixelContextProviderProps) => {
   const pixelReducer = (state: IPixelState, action) => {
     switch (action.type) {
-      case PixelActions.RESET_PIXEL_ARRAY: {
+      case PixelActions.RESET_PIXEL_ARRAY:
         return initialState;
-      }
+      case PixelActions.LOAD_SAVED:
+        return action.saved;
       case PixelActions.SET_PIXEL_TABLE:
         return { ...state, pixelArray: action.pixelArray };
       case PixelActions.SET_PIXE_SIZE:
@@ -177,6 +179,13 @@ export const PixelContextProvider = ({
     }
   };
 
+  const setPixelArtFromStorage = (item) => {
+    dispatch({
+      type: PixelActions.LOAD_SAVED,
+      saved: item,
+    });
+  };
+
   return (
     <PixelContext.Provider
       value={{
@@ -192,6 +201,7 @@ export const PixelContextProvider = ({
         setPixelSize,
         setPixelColumns,
         setPixelRows,
+        setPixelArtFromStorage,
       }}
     >
       {children}

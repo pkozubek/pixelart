@@ -1,4 +1,4 @@
-import React, { useContext, useCallback } from "react";
+import React, { useContext, useCallback, useState } from "react";
 
 import { editorMods } from "../../consts";
 import ToolBarButton from "./ToolBarButton/ToolBarButton";
@@ -14,6 +14,7 @@ import {
   FaSave,
   FaFolderOpen,
   FaEraser,
+  FaFileImage,
 } from "react-icons/fa";
 
 import { IoMdColorFill } from "react-icons/io";
@@ -21,8 +22,17 @@ import { CgColorPicker } from "react-icons/cg";
 import { loadPixelArray, savePixelArray } from "../../utils/storage";
 
 import ColorPicker from "../../UI/ColorPicker/ColorPicker";
+import { useModal } from "../../hooks/useModal";
+import Modal from "../../UI/Modal/Modal";
+import { toPng } from "html-to-image";
+import download from "downloadjs";
 
 const SideBar = () => {
+  const { isModalVisible, visibilityHandler } = useModal({
+    initialVisibility: false,
+  });
+  const [inputValue, setInputValue] = useState("");
+
   const { editorMode, changeEditorMode } = useContext(EditorContext);
   const {
     undoLastAction,
@@ -30,8 +40,11 @@ const SideBar = () => {
     isRevertPossible,
     isUndoPossible,
     pixelArray,
-    setPixelArray,
     resetUndoAndRevert,
+    columns,
+    rows,
+    pixelSize,
+    setPixelArtFromStorage,
   } = useContext(PixelContext);
 
   const onButtonClick = useCallback(
@@ -39,15 +52,33 @@ const SideBar = () => {
     []
   );
 
+  const onExportImage = () => visibilityHandler();
+
+  const exportImage = () => {
+    const [pixelGrid] = document.getElementsByClassName("PixelGrid");
+    toPng(pixelGrid as HTMLElement).then((dataUrl) =>
+      download(dataUrl, `${inputValue}.png`)
+    );
+  };
+
   const onSaveClick = useCallback(() => {
-    savePixelArray(pixelArray);
+    savePixelArray({
+      pixelArray,
+      columns,
+      rows,
+      pixelSize,
+    });
   }, [pixelArray]);
 
   const onLoadClick = useCallback(() => {
     const pixelArr = loadPixelArray();
-    pixelArr && setPixelArray(pixelArr);
+    pixelArr && setPixelArtFromStorage(pixelArr);
     resetUndoAndRevert();
   }, []);
+
+  const onInputChange = (e) => {
+    setInputValue(e.target.value);
+  };
 
   const modeButtons = [
     {
@@ -74,6 +105,11 @@ const SideBar = () => {
 
   const pictureStateButtons = [
     {
+      icon: <FaFileImage />,
+      name: "Export to Image",
+      onClick: onExportImage,
+    },
+    {
       icon: <FaSave />,
       name: "Save",
       onClick: onSaveClick,
@@ -99,6 +135,24 @@ const SideBar = () => {
 
   return (
     <>
+      <Modal
+        visible={isModalVisible}
+        content={<input value={inputValue} onChange={onInputChange} />}
+        title="Type name of file"
+        visibilityHandler={visibilityHandler}
+        buttons={[
+          {
+            name: "Save",
+            key: "save",
+            action: exportImage,
+          },
+          {
+            name: "Cancel",
+            key: "cancel",
+            action: visibilityHandler,
+          },
+        ]}
+      />
       <Category name="Picture">
         {pictureStateButtons.map((stateButton) => (
           <ToolBarButton {...stateButton} key={stateButton.name} />
