@@ -38,3 +38,25 @@ export const morphPixelArray = ({
     
     return newPixelArray;
 }
+
+export const fillPixelArrayWithColor = (pixelArray:string[][], newColor:string,i:number, j:number) => {
+    const current = pixelArray[i][j];
+    if(current === newColor){
+        return pixelArray;
+    }
+
+    fill(pixelArray, i, j, newColor, current);
+    return pixelArray;
+}
+
+const fill = (image:string[][], sr:number, sc:number, newColor:string, current:string) => {
+    if(sr < 0 || sc < 0 || sr > image.length - 1 || sc > image[sr].length - 1 || image[sr][sc] !== current){
+        return;
+    }
+
+    image[sr][sc] = newColor;
+    fill(image, sr - 1, sc, newColor, current);
+    fill(image, sr + 1, sc, newColor, current);
+    fill(image, sr, sc - 1, newColor, current);
+    fill(image, sr, sc + 1, newColor, current);
+}

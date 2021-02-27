@@ -4,7 +4,7 @@ import { PixelContext } from "../context/PixelContext";
 import * as StyledApp from "./StyledApp";
 import GlobalStyle from "./GlobalStyle";
 import PixelGrid from "../PixelGrid/PixelGrid";
-import { loadPixelArray } from "../utils/storage";
+import { loadPixelArray, deletePixelArray } from "../utils/storage";
 import Modal from "../UI/Modal/Modal";
 
 const App = () => {
@@ -17,9 +17,15 @@ const App = () => {
   }, []);
 
   const modalVisiblityHandler = () => setMemoryPixelArt(!!!pixelArtFromMemory);
+
   const loadPixelArt = () => {
     modalVisiblityHandler();
     setPixelArtFromStorage(pixelArtFromMemory);
+  };
+
+  const onDeleteProgress = () => {
+    deletePixelArray();
+    modalVisiblityHandler();
   };
 
   return (
@@ -37,9 +43,14 @@ const App = () => {
         visibilityHandler={modalVisiblityHandler}
         buttons={[
           {
-            name: "Cancel",
-            key: "cancel",
+            name: "Close",
+            key: "close",
             action: modalVisiblityHandler,
+          },
+          {
+            name: "Delete progress",
+            key: "delete",
+            action: onDeleteProgress,
           },
           {
             name: "Load",

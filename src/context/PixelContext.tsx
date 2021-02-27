@@ -1,7 +1,7 @@
 import React, { createContext, useReducer, useState, useCallback } from "react";
 import { defaultPixelArray } from "../consts";
 import { PixelActions } from "./Actions";
-import { morphPixelArray } from "../utils/pixelArray";
+import { morphPixelArray, fillPixelArrayWithColor } from "../utils/pixelArray";
 interface IPixelState {
   pixelArray: string[][];
   rows: number;
@@ -22,6 +22,11 @@ interface IPixelContext extends IPixelState {
   setPixelColumns: (columns: number) => void;
   setPixelRows: (rows: number) => void;
   setPixelArtFromStorage: (item) => void;
+  fillWithColor: (
+    rowIndex: number,
+    columnIndex: number,
+    newColor: string
+  ) => void;
 }
 
 export const PixelContext = createContext<IPixelContext>(null);
@@ -179,12 +184,29 @@ export const PixelContextProvider = ({
     }
   };
 
-  const setPixelArtFromStorage = (item) => {
-    dispatch({
-      type: PixelActions.LOAD_SAVED,
-      saved: item,
-    });
-  };
+  const fillWithColor = useCallback(
+    (rowIndex: number, columnIndex: number, newColor: string) => {
+      const newPixelArray = fillPixelArrayWithColor(
+        state.pixelArray,
+        newColor,
+        columnIndex,
+        rowIndex
+      );
+
+      setPixelArray(newPixelArray);
+    },
+    [dispatch, state.pixelArray]
+  );
+
+  const setPixelArtFromStorage = useCallback(
+    (item) => {
+      dispatch({
+        type: PixelActions.LOAD_SAVED,
+        saved: item,
+      });
+    },
+    [dispatch]
+  );
 
   return (
     <PixelContext.Provider
@@ -202,6 +224,7 @@ export const PixelContextProvider = ({
         setPixelColumns,
         setPixelRows,
         setPixelArtFromStorage,
+        fillWithColor,
       }}
     >
       {children}

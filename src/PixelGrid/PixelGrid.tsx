@@ -11,9 +11,14 @@ const PixelGrid = () => {
     indexOfSelectedColor,
     replaceColor,
   } = useContext(EditorContext);
-  const { pixelArray, rows, columns, pixelSize, setPixel } = useContext(
-    PixelContext
-  );
+  const {
+    pixelArray,
+    rows,
+    columns,
+    pixelSize,
+    setPixel,
+    fillWithColor,
+  } = useContext(PixelContext);
 
   const [isMouseClicked, setMouseClicked] = useState(false);
 
@@ -40,6 +45,9 @@ const PixelGrid = () => {
         break;
       case editorMods.COLOR_SELECTOR:
         replaceColor(indexOfSelectedColor, pixelArray[columnIndex][rowIndex]);
+        break;
+      case editorMods.FILL:
+        fillWithColor(rowIndex, columnIndex, pickedColor);
         break;
     }
   };

@@ -13,3 +13,5 @@ export const loadPixelArray = () => {
     const storageItem = localStorage.getItem('pixelart');
     return storageItem ? JSON.parse(storageItem) : null;
 }
+
+export const deletePixelArray = () => localStorage.removeItem('pixelart');
