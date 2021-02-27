@@ -6,7 +6,9 @@ const modalHeader = 50;
 const modalActions = 50;
 const buttonSize = 30;
 
-const backgroundColor = "#FFFFFF";
+const backgroundColor = "#fff";
+const titleBar = '#5c5c5c';
+
 
 const modalPosition = {
     top: `calc(50% - ${modalHeight/2}px)`,
@@ -34,19 +36,21 @@ const Modal = styled.div`
 const Title = styled.div`
     width: 100%;
     height: ${modalSize.header};
-    background: ${backgroundColor};
+    background: ${titleBar};
     color: white;
     
     h2 {
         padding: 1em 0 0 1em;
+        font-size: 1.2em;
+        font-weight: bolder;
     }
 `
 
 const CloseIcon = styled.span`
     color: white;
     position: absolute;
-    left: calc(100% - ${(buttonSize/2)+'px'});
-    top: ${-buttonSize/2}px;
+    left: calc(95% - ${(buttonSize/2)+'px'});
+    top: 10px;
     width: ${buttonSize+'px'};
     height: ${buttonSize+'px'};
 
@@ -60,14 +64,23 @@ const CloseIcon = styled.span`
     }
 `;
 
-const Content = styled.div`
+const Body = styled.div`
     width: 90%;
     margin: auto;
     height: ${modalSize.content};
-    font-size: 1.2em;
-    display: ${({isString}) => isString && 'flex'};
-    align-items: ${({isString}) => isString && 'center'}
 `
+
+const Content = styled.div`
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 1.2em;
+`
+
 
 const Actions = styled.div`
     width: calc(100%  - 10px);
@@ -87,6 +100,7 @@ const ModalStyledComponents = {
     Title,
     CloseIcon,
     Content,
+    Body,
     Actions
 }
 

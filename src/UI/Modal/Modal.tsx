@@ -40,11 +40,13 @@ const Modal = (props: IModalProps) => {
               <AiFillCloseCircle />
             </ModalStyledComponents.CloseIcon>
           </ModalStyledComponents.Title>
-          <ModalStyledComponents.Content
-            isString={typeof props.content === "string"}
-          >
-            {props.content}
-          </ModalStyledComponents.Content>
+          <ModalStyledComponents.Body>
+            <ModalStyledComponents.Content
+              isString={typeof props.content === "string"}
+            >
+              {props.content}
+            </ModalStyledComponents.Content>
+          </ModalStyledComponents.Body>
           <ModalStyledComponents.Actions>
             {props.buttons?.map((button) => renderButton(button))}
           </ModalStyledComponents.Actions>

@@ -26,12 +26,14 @@ import { useModal } from "../../hooks/useModal";
 import Modal from "../../UI/Modal/Modal";
 import { toPng } from "html-to-image";
 import download from "downloadjs";
+import * as StyledToolBar from "./styledToolBar";
 
 const SideBar = () => {
   const { isModalVisible, visibilityHandler } = useModal({
     initialVisibility: false,
   });
-  const [inputValue, setInputValue] = useState("");
+  const [nameOfFile, setNameOfFile] = useState("");
+  const [onExportError, setOnExportError] = useState(false);
 
   const { editorMode, changeEditorMode } = useContext(EditorContext);
   const {
@@ -52,12 +54,17 @@ const SideBar = () => {
     []
   );
 
-  const onExportImage = () => visibilityHandler();
-
   const exportImage = () => {
+    if (!nameOfFile) {
+      setOnExportError(true);
+      return;
+    }
+
+    setOnExportError(false);
     const [pixelGrid] = document.getElementsByClassName("PixelGrid");
+    visibilityHandler();
     toPng(pixelGrid as HTMLElement).then((dataUrl) =>
-      download(dataUrl, `${inputValue}.png`)
+      download(dataUrl, `${nameOfFile}.png`)
     );
   };
 
@@ -77,7 +84,8 @@ const SideBar = () => {
   }, []);
 
   const onInputChange = (e) => {
-    setInputValue(e.target.value);
+    setOnExportError(false);
+    setNameOfFile(e.target.value);
   };
 
   const modeButtons = [
@@ -107,7 +115,7 @@ const SideBar = () => {
     {
       icon: <FaFileImage />,
       name: "Export to Image",
-      onClick: onExportImage,
+      onClick: visibilityHandler,
     },
     {
       icon: <FaSave />,
@@ -137,19 +145,31 @@ const SideBar = () => {
     <>
       <Modal
         visible={isModalVisible}
-        content={<input value={inputValue} onChange={onInputChange} />}
-        title="Type name of file"
+        content={
+          <>
+            <StyledToolBar.Label isError={onExportError}>
+              Name of your file:
+            </StyledToolBar.Label>
+            <StyledToolBar.Input
+              isError={onExportError}
+              placeholder="Type here..."
+              value={nameOfFile}
+              onChange={onInputChange}
+            />
+          </>
+        }
+        title="Export To Image"
         visibilityHandler={visibilityHandler}
         buttons={[
-          {
-            name: "Save",
-            key: "save",
-            action: exportImage,
-          },
           {
             name: "Cancel",
             key: "cancel",
             action: visibilityHandler,
+          },
+          {
+            name: "Save",
+            key: "save",
+            action: exportImage,
           },
         ]}
       />
