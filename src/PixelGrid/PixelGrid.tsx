@@ -10,6 +10,7 @@ const PixelGrid = () => {
     editorMode,
     indexOfSelectedColor,
     replaceColor,
+    areLinesVisible,
   } = useContext(EditorContext);
   const {
     pixelArray,
@@ -64,6 +65,7 @@ const PixelGrid = () => {
       {pixelArray.map((pixelRow, columnIndex) =>
         pixelRow.map((pixelColor, rowIndex) => (
           <StyledPixelGrid.Pixel
+            isBorder={areLinesVisible}
             key={`pixel-${columnIndex}-${rowIndex}`}
             onClick={() => onPixelTileClick(rowIndex, columnIndex)}
             onMouseMove={() => onMouseOverTile(rowIndex, columnIndex)}

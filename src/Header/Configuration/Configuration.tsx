@@ -4,6 +4,8 @@ import ConfigurationType from "./ConfigurationType/ConfigurationType";
 import { GiResize } from "react-icons/gi";
 import { AiOutlineColumnHeight, AiOutlineColumnWidth } from "react-icons/ai";
 import Category from "../Category/Category";
+import DisplayOption from "./DisplayOption/DisplayOption";
+import EditorContext from "../../context/EditorContext";
 
 const Configuration = () => {
   const {
@@ -14,6 +16,12 @@ const Configuration = () => {
     setPixelColumns,
     setPixelRows,
   } = useContext(PixelContext);
+  const {
+    toggleFullScreen,
+    toggleLines,
+    isFullScreen,
+    areLinesVisible,
+  } = useContext(EditorContext);
 
   return (
     <>
@@ -39,7 +47,18 @@ const Configuration = () => {
           onChange={setPixelColumns}
         />
       </Category>
-      <Category name="Display options"></Category>
+      <Category name="Display options">
+        <DisplayOption
+          onCheck={toggleLines}
+          isActive={areLinesVisible}
+          label="Show lines"
+        />
+        <DisplayOption
+          onCheck={toggleFullScreen}
+          isActive={isFullScreen}
+          label="Full screen"
+        />
+      </Category>
     </>
   );
 };

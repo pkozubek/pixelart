@@ -7,7 +7,6 @@ export const Container = styled.div`
   height: calc(100% - 4px);
   margin-right: 1em;
   padding: 4px;
-  outline: solid 2px #bdbdbd;
 `;
 
 export const Icon = styled.div`
@@ -34,7 +33,7 @@ export const Input = styled.input`
   width: 100%;
   background: transparent;
   border: none;
-  width: 1em;
+  width: 1.2em;
   height: 20%;
   margin: auto;
 `;

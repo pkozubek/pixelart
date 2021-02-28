@@ -15,6 +15,11 @@ interface IEditorContext {
   changeEditorMode: (mode: editorMods) => void;
   indexOfSelectedColor: number;
   changeIndexOfSelectedColor: (index: number) => void;
+  toggleFullScreen: () => void;
+  toggleLines: () => void;
+  areLinesVisible: boolean;
+  isFullScreen: boolean;
+  setFullScreen: (willBeActive: boolean) => void;
 }
 
 export const EditorContext = createContext<IEditorContext>(null);
@@ -36,6 +41,8 @@ export const EditorContextContextProvider = (
   );
 
   const [editorMode, changeEditorMode] = useState<editorMods>(editorMods.PAINT);
+  const [isFullScreen, setFullScreen] = useState<boolean>(false);
+  const [areLinesVisible, setLinesVisible] = useState<boolean>(true);
   const [colorPalette, setColorPalette] = useState<string[]>([
     baseColor,
     ...generatedColorArray,
@@ -48,6 +55,13 @@ export const EditorContextContextProvider = (
     setColorPalette(newColorPallete);
   };
 
+  const toggleFullScreen = () => {
+    if (!isFullScreen) document.documentElement.requestFullscreen();
+    else document.exitFullscreen();
+  };
+
+  const toggleLines = () => setLinesVisible(!areLinesVisible);
+
   return (
     <EditorContext.Provider
       value={{
@@ -58,6 +72,11 @@ export const EditorContextContextProvider = (
         changeEditorMode,
         indexOfSelectedColor,
         changeIndexOfSelectedColor,
+        toggleFullScreen,
+        toggleLines,
+        areLinesVisible,
+        isFullScreen,
+        setFullScreen,
       }}
     >
       {props.children}

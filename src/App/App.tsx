@@ -7,15 +7,28 @@ import PixelGrid from "../PixelGrid/PixelGrid";
 import { loadPixelArray, deletePixelArray } from "../utils/storage";
 import Modal from "../UI/Modal/Modal";
 import { buttonType } from "../consts";
+import EditorContext from "../context/EditorContext";
 
 const App = () => {
   const { setPixelArtFromStorage } = useContext(PixelContext);
+  const { isFullScreen, setFullScreen } = useContext(EditorContext);
   const [pixelArtFromMemory, setMemoryPixelArt] = useState(false);
 
   useEffect(() => {
     const savedPixelArt = loadPixelArray();
     if (savedPixelArt) setMemoryPixelArt(savedPixelArt);
   }, []);
+
+  const onFullScreenChange = () => {
+    setFullScreen(!isFullScreen);
+  };
+
+  useEffect(() => {
+    document.addEventListener("fullscreenchange", onFullScreenChange);
+
+    return () =>
+      document.removeEventListener("fullscreenchange", onFullScreenChange);
+  }, [setFullScreen, isFullScreen]);
 
   const modalVisiblityHandler = () => setMemoryPixelArt(!!!pixelArtFromMemory);
 
