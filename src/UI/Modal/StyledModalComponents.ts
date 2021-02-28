@@ -9,6 +9,19 @@ const buttonSize = 30;
 const backgroundColor = "#fff";
 const titleBar = '#5c5c5c';
 
+const returnBackground = (type: string) => {
+    switch(type) {
+        case 'normal':
+        default: 
+            return '#5c5c5c';
+        case 'positive':
+            return '#6da86a';
+        case 'negative':
+            return '#db7e6e';
+        case 'action':
+            return '#688ca1';
+    }
+}
 
 const modalPosition = {
     top: `calc(50% - ${modalHeight/2}px)`,
@@ -31,6 +44,7 @@ const Modal = styled.div`
     z-index: 100;
     top: ${modalPosition.top};
     left: ${modalPosition.left};
+    padding-bottom: 1em;
 `;
 
 const Title = styled.div`
@@ -65,7 +79,7 @@ const CloseIcon = styled.span`
 `;
 
 const Body = styled.div`
-    width: 90%;
+    width: 80%;
     margin: auto;
     height: ${modalSize.content};
 `
@@ -95,13 +109,26 @@ const Actions = styled.div`
     }
 `
 
+const Button = styled.button`
+    margin-right:1em;
+    border:none;
+    background: ${({type}) => returnBackground(type)};
+    color: white;
+    font-weight: bolder;
+
+    :hover {
+        cursor: pointer;
+    }
+`
+
 const ModalStyledComponents = {
     Modal,
     Title,
     CloseIcon,
     Content,
     Body,
-    Actions
+    Actions,
+    Button
 }
 
 export default ModalStyledComponents;

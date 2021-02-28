@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { buttonType } from "../../consts";
 import { PixelContext } from "../../context/PixelContext";
 import { useModal } from "../../hooks/useModal";
 import Modal from "../../UI/Modal/Modal";
@@ -12,11 +13,13 @@ const NewPixelArt = () => {
   const buttons = [
     {
       name: "Cancel",
+      type: buttonType.NEGATIVE,
       key: "cancel",
       action: visibilityHandler,
     },
     {
       name: "Confirm",
+      type: buttonType.POSITIVE,
       key: "confirm",
       action: confirmationHandler,
     },

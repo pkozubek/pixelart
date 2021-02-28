@@ -164,11 +164,13 @@ const SideBar = () => {
           {
             name: "Cancel",
             key: "cancel",
+            type: "negative",
             action: visibilityHandler,
           },
           {
             name: "Save",
             key: "save",
+            type: "positive",
             action: exportImage,
           },
         ]}

@@ -7,6 +7,7 @@ import { AiFillCloseCircle } from "react-icons/ai";
 interface IModalButton {
   name: string;
   key: string;
+  type?: "positive" | "negative" | "action" | "normal";
   action: () => void;
 }
 
@@ -23,9 +24,13 @@ const Modal = (props: IModalProps) => {
 
   const renderButton = (button: IModalButton) => {
     return (
-      <button onClick={button.action} key={button.key}>
+      <ModalStyledComponents.Button
+        type={button.type || "normal"}
+        onClick={button.action}
+        key={button.key}
+      >
         {button.name}
-      </button>
+      </ModalStyledComponents.Button>
     );
   };
 

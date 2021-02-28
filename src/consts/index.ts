@@ -12,3 +12,10 @@ export enum editorMods {
     COLOR_SELECTOR = 'colorSelector',
     ERASER = 'eraser'
 }
+
+export enum buttonType {
+    NORMAL = 'normal',
+    POSITIVE = 'positive',
+    NEGATIVE = 'negative',
+    ACTION = 'action'
+}

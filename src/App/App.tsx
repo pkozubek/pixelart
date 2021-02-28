@@ -6,6 +6,7 @@ import GlobalStyle from "./GlobalStyle";
 import PixelGrid from "../PixelGrid/PixelGrid";
 import { loadPixelArray, deletePixelArray } from "../utils/storage";
 import Modal from "../UI/Modal/Modal";
+import { buttonType } from "../consts";
 
 const App = () => {
   const { setPixelArtFromStorage } = useContext(PixelContext);
@@ -45,16 +46,19 @@ const App = () => {
           {
             name: "Close",
             key: "close",
+            type: buttonType.NEGATIVE,
             action: modalVisiblityHandler,
           },
           {
             name: "Delete progress",
             key: "delete",
+            type: buttonType.ACTION,
             action: onDeleteProgress,
           },
           {
             name: "Load",
             key: "load",
+            type: buttonType.POSITIVE,
             action: loadPixelArt,
           },
         ]}
