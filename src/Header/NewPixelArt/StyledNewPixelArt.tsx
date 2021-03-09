@@ -1,17 +1,19 @@
 import styled from "styled-components";
 import { ImFileEmpty } from "react-icons/im";
+import colors from "../../consts/styledVariables";
 
 const Button = styled.div`
   text-align: center;
-  background: blue;
+  background: ${colors.active};
   color: white;
   position: relative;
   transition: background 1s;
-  padding: 4px;
+  padding: 6px;
 
   &:hover {
     transition: background 1s;
-    background: darkblue;
+    background: ${colors.hover};
+    cursor: pointer;
   }
 `;
 

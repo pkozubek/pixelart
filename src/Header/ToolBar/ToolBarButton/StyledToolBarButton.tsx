@@ -1,23 +1,24 @@
 import styled from "styled-components";
-import { toolBarButtonSize } from "../../../consts/styledVariables";
+import colors, { toolBarButtonSize } from "../../../consts/styledVariables";
 
 const returnColor = (props) => {
   const { isActive, disabled } = props;
 
-  if (isActive) return "blue";
-  if (disabled) return "rgba(0,0,0,0.2)";
+  if (isActive) return colors.active;
+  if (disabled) return colors.inactive;
 
-  return "black";
+  return colors.dark;
 };
 
 const Button = styled.button`
   height: 100%;
   background: transparent;
   margin: 0 6px 0 6px;
+  padding: 5px;
   border: none;
-  border: 2px solid gray;
-  transition: border 0.2s;
-  padding: 3px;
+  border: 2px solid ${returnColor};
+  transition: border 0.2s, box-shadow 0.5s;
+  box-shadow: ${({ isActive }) => isActive && `0 0 6px ${colors.active}`};
 
   svg {
     width: ${toolBarButtonSize};
@@ -27,11 +28,17 @@ const Button = styled.button`
   }
 
   &:hover {
-    border: ${({ disabled }) => `2px solid ${disabled ? "gray" : "blue"}`};
+    border: ${({ disabled }) =>
+      `2px solid ${disabled ? colors.inactive : colors.hover}`};
+    cursor: pointer;
 
     svg {
-      color: ${({ disabled }) => (disabled ? "rgba(0,0,0,0.2)" : "blue")};
+      color: ${({ disabled }) => (disabled ? colors.inactive : colors.hover)};
     }
+  }
+
+  &:focus {
+    outline: none;
   }
 `;
 

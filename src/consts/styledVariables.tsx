@@ -1,12 +1,14 @@
 export const topBarHeight = "36px";
 export const toolBarHeight = "120px";
-export const toolBarButtonSize = "55px";
+export const toolBarButtonSize = "50px";
 
 export const colors = {
-  grey: "#ccc",
   menu: "#ede9e8",
-  menuHover: "#e0dbda",
-  toolBar: "#ede9e8",
+  dark: "#2c2c2c",
+  light: "#ccc",
+  active: "#0066ff",
+  hover: "#0256d4",
+  inactive: "#c2c2c2",
   white: "#FFFFFF",
 };
 

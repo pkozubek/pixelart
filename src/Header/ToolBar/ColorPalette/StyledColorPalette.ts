@@ -1,23 +1,19 @@
 import styled from "styled-components";
+import colors from "../../../consts/styledVariables";
 
-const ColorRectangle = styled.div`
+export const ColorRectangle = styled.div`
   width: 20px;
   height: 20px;
-  margin: 3px;
-  border: ${(props) =>
-    props.isPicked ? "2px solid yellow" : "2px solid black"};
+  margin: 5px;
+  outline: ${(props) =>
+    props.isPicked ? `4px solid ${colors.active}` : `2px solid ${colors.dark}`};
   background: ${({ color }) => color};
 `;
 
-const ColorContainer = styled.div`
+export const ColorContainer = styled.div`
   width: 300px;
+  margin-right: 1em;
   display: flex;
   flex-wrap: wrap;
 `;
 
-const StyledColorPalette = {
-  ColorRectangle,
-  ColorContainer,
-};
-
-export default StyledColorPalette;

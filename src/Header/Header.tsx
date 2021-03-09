@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import StyledHeader from "./StyledHeader";
+import * as StyledHeader from "./StyledHeader";
 import Toolbar from "./ToolBar/ToolBar";
 import Configuration from "./Configuration/Configuration";
 import NewPixelArt from "./NewPixelArt/NewPixelArt";

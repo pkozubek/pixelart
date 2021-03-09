@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import EditorContext from "../../../context/EditorContext";
-import StyledColorPalette from "./StyledColorPalette";
+import * as StyledColorPalette from "./StyledColorPalette";
 
 const ColorPallete = () => {
   const {
