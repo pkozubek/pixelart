@@ -97,7 +97,6 @@ const Content = styled.div`
 
 
 const Actions = styled.div`
-    width: calc(100%  - 10px);
     height: ${modalSize.actions};
     display: flex;
     justify-content: flex-end;

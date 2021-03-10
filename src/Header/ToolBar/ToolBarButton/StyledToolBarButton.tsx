@@ -1,5 +1,8 @@
 import styled from "styled-components";
-import colors, { toolBarButtonSize } from "../../../consts/styledVariables";
+import colors, {
+  mediaBreakpoints,
+  toolBarButtonSize,
+} from "../../../consts/styledVariables";
 
 const returnColor = (props) => {
   const { isActive, disabled } = props;
@@ -39,6 +42,24 @@ const Button = styled.button`
 
   &:focus {
     outline: none;
+  }
+
+  @media (max-width: ${mediaBreakpoints.desktop}) {
+    padding: 3px;
+
+    svg {
+      width: 35px;
+      height: 35px;
+    }
+  }
+
+  @media (max-width: ${mediaBreakpoints.small}) {
+    padding: 2px;
+
+    svg {
+      width: 30px;
+      height: 30px;
+    }
   }
 `;
 

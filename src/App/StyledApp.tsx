@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { appVariables } from "../consts/styledVariables";
 
 export const App = styled.div`
-  width: 100vw;
   min-height: 100vh;
   background: ${appVariables.colors.background};
 `;

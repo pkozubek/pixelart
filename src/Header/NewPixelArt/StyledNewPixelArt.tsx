@@ -1,12 +1,11 @@
 import styled from "styled-components";
 import { ImFileEmpty } from "react-icons/im";
-import colors from "../../consts/styledVariables";
+import colors, { mediaBreakpoints } from "../../consts/styledVariables";
 
 const Button = styled.div`
   text-align: center;
   background: ${colors.active};
   color: white;
-  position: relative;
   transition: background 1s;
   padding: 6px;
 
@@ -14,6 +13,11 @@ const Button = styled.div`
     transition: background 1s;
     background: ${colors.hover};
     cursor: pointer;
+  }
+
+  @media (max-width: ${mediaBreakpoints.small}) {
+    padding: 4px;
+    font-size: 0.9em;
   }
 `;
 

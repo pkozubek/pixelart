@@ -1,32 +1,44 @@
 import styled from "styled-components";
+import colors, {
+  mediaBreakpoints,
+  toolBarButtonSize,
+} from "../../../consts/styledVariables";
 
 export const Container = styled.div`
-  display: grid;
-  grid-template-columns: 4em 2em;
-  grid-template-rows: 90% 10%;
-  height: calc(100% - 4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-right: 1em;
-  padding: 4px;
 `;
 
 export const Icon = styled.div`
-  height: 100%;
-
   svg {
-    width: 4em;
-    height: 4em;
+    color: ${colors.dark};
+    width: ${toolBarButtonSize};
+    height: ${toolBarButtonSize};
+  }
+
+  @media (max-width: ${mediaBreakpoints.large}) {
+    svg {
+      width: 2em;
+      height: 2em;
+    }
   }
 `;
 
 export const InputContainer = styled.div`
   margin-left: 1em;
+  color: ${colors.dark};
+
+  label {
+    display: block;
+    text-align: center;
+  }
 `;
 
 export const Range = styled.input`
-  -webkit-appearance: slider-vertical;
   background: transparent;
-  height: 80%;
-  width: 1em;
+  width: 5em;
 `;
 
 export const Input = styled.input`

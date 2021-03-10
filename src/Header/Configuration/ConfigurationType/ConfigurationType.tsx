@@ -15,10 +15,7 @@ const ConfigurationType = (props: IConfigurationTypeProps) => {
 
   return (
     <Styled.Container>
-      <Styled.Icon>
-        {props.icon}
-        <span>{props.text}</span>
-      </Styled.Icon>
+      <Styled.Icon>{props.icon}</Styled.Icon>
       <Styled.InputContainer>
         <Styled.Range
           min={1}
@@ -33,6 +30,7 @@ const ConfigurationType = (props: IConfigurationTypeProps) => {
           value={props.value}
           onChange={onInputChange}
         />
+        <label>{props.text}</label>
       </Styled.InputContainer>
     </Styled.Container>
   );

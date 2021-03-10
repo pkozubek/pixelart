@@ -12,6 +12,14 @@ export const colors = {
   white: "#FFFFFF",
 };
 
+export const mediaBreakpoints = {
+  desktop: "1200px",
+  large: "992px",
+  medium: "768px",
+  small: "640px",
+  verySmall: "350px",
+};
+
 export const appVariables = {
   size: {
     bodyContainerHeight: `calc(100vh - ${topBarHeight} - ${toolBarHeight})`,

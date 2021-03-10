@@ -1,5 +1,10 @@
 import styled from "styled-components";
-import { topBarHeight, toolBarHeight, colors } from "../consts/styledVariables";
+import {
+  topBarHeight,
+  toolBarHeight,
+  colors,
+  mediaBreakpoints,
+} from "../consts/styledVariables";
 
 const headerBackground = "#bebdbd";
 const tabBackground = "#ede9e8";
@@ -24,11 +29,17 @@ export const Tab = styled.div`
   padding: 6px;
   font-size: 1.1em;
   transition: color 0.2s;
+
+  @media (max-width: ${mediaBreakpoints.small}) {
+    font-size: 0.9em;
+  }
 `;
 
 export const TabContent = styled.div`
-  height: ${toolBarHeight};
+  min-height: ${toolBarHeight};
+  height: auto;
   width: 100%;
   background: ${tabBackground};
   display: flex;
+  flex-wrap: wrap;
 `;
