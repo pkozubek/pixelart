@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+const pickerHeight='313px';
+
 const Popover = styled.div`
       position: absolute;
       z-index: 2;
@@ -11,6 +13,7 @@ const Cover = styled.div`
       right: 0px;
       bottom: 0px;
       left: ${({left}) => left ? `${left}px` : '0px'};
+      height: ${pickerHeight};
 `;
 
 const StyledColorPicker = {

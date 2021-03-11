@@ -1,9 +1,16 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { PhotoshopPicker } from "react-color";
 import { IoIosColorPalette } from "react-icons/io";
 import EditorContext from "../../context/EditorContext";
 import ToolBarButton from "../../Header/ToolBar/ToolBarButton/ToolBarButton";
 import StyledColorPicker from "./StyledColorPicker";
+import { useOnClickOutside } from "../../hooks/useOnClickOutside";
 
 const pickerWidth = 513;
 
@@ -17,6 +24,7 @@ const ColorPicker = () => {
     top: 0,
     left: 0,
   });
+  const ref = useRef<any>();
 
   const onAccept = () => {
     setColorPickerVisile(false);
@@ -59,6 +67,7 @@ const ColorPicker = () => {
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
   }, []);
+  useOnClickOutside(ref, () => setColorPickerVisile(!isColorPickerVisible));
 
   return (
     <>
@@ -69,7 +78,7 @@ const ColorPicker = () => {
       />
       {isColorPickerVisible && (
         <StyledColorPicker.Popover>
-          <StyledColorPicker.Cover {...pickerLocation}>
+          <StyledColorPicker.Cover ref={ref} {...pickerLocation}>
             <PhotoshopPicker
               color={localColor}
               onChange={onChange}
