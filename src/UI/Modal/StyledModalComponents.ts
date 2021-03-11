@@ -1,13 +1,21 @@
 import styled from 'styled-components';
+import { mediaBreakpoints } from '../../consts/styledVariables';
 
-const modalWith = 500;
-const modalHeight = 300;
+const backgroundColor = "#fff";
+const titleBar = '#5c5c5c';
 const modalHeader = 50;
 const modalActions = 50;
 const buttonSize = 30;
 
-const backgroundColor = "#fff";
-const titleBar = '#5c5c5c';
+const height = {
+    large: 300,
+    small: 250
+}
+
+const width = {
+    large: 500,
+    small: 300
+}
 
 const returnBackground = (type: string) => {
     switch(type) {
@@ -23,33 +31,27 @@ const returnBackground = (type: string) => {
     }
 }
 
-const modalPosition = {
-    top: `calc(50% - ${modalHeight/2}px)`,
-    left: `calc(50% - ${modalWith/2}px)`
-}
-
-const modalSize = {
-    width: modalWith+'px',
-    height: modalHeight+'px',
-    header: modalHeader+'px',
-    actions: modalActions+'px',
-    content: `calc(100% - ${modalHeader + modalActions}px)`
-}
-
-const Modal = styled.div`
-    width: ${modalSize.width};
-    height: ${modalSize.height};
+export const Modal = styled.div`
+    width: ${width.large+'px'};
+    height: ${height.large+'px'};
     background: ${backgroundColor};
     position: absolute;
     z-index: 100;
-    top: ${modalPosition.top};
-    left: ${modalPosition.left};
+    top: ${`calc(50% - ${width.large/2}px)`};
+    left: ${`calc(50% - ${width.large/2}px)`};
     padding-bottom: 1em;
+
+    @media (max-width: ${mediaBreakpoints.small}) {
+        width: ${width.small + 'px'};
+        height: ${height.small + 'px'};
+        top: ${`calc(50% - ${height.small/2}px)`};
+        left: ${`calc(50% - ${width.small/2}px)`};
+    }
 `;
 
-const Title = styled.div`
+export const Title = styled.div`
     width: 100%;
-    height: ${modalSize.header};
+    height: ${modalHeader+'px'};
     background: ${titleBar};
     color: white;
     
@@ -60,7 +62,7 @@ const Title = styled.div`
     }
 `
 
-const CloseIcon = styled.span`
+export const CloseIcon = styled.span`
     color: white;
     position: absolute;
     left: calc(95% - ${(buttonSize/2)+'px'});
@@ -78,13 +80,13 @@ const CloseIcon = styled.span`
     }
 `;
 
-const Body = styled.div`
+export const Body = styled.div`
     width: 80%;
     margin: auto;
-    height: ${modalSize.content};
+    height: ${`calc(100% - ${modalHeader + modalActions}px)`};
 `
 
-const Content = styled.div`
+export const Content = styled.div`
     height: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -96,8 +98,8 @@ const Content = styled.div`
 `
 
 
-const Actions = styled.div`
-    height: ${modalSize.actions};
+export const Actions = styled.div`
+    height: ${modalActions+'px'};
     display: flex;
     justify-content: flex-end;
     margin:  0 5px 0 5px;
@@ -108,7 +110,7 @@ const Actions = styled.div`
     }
 `
 
-const Button = styled.button`
+export const Button = styled.button`
     margin-right:1em;
     border:none;
     background: ${({type}) => returnBackground(type)};
@@ -119,15 +121,3 @@ const Button = styled.button`
         cursor: pointer;
     }
 `
-
-const ModalStyledComponents = {
-    Modal,
-    Title,
-    CloseIcon,
-    Content,
-    Body,
-    Actions,
-    Button
-}
-
-export default ModalStyledComponents;

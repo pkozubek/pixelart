@@ -1,7 +1,7 @@
 import React from "react";
 import { createPortal } from "react-dom";
 import Shadow from "../Shadow/Shadow";
-import ModalStyledComponents from "./StyledModalComponents";
+import * as ModalStyledComponents from "./StyledModalComponents";
 import { AiFillCloseCircle } from "react-icons/ai";
 
 interface IModalButton {
