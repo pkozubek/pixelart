@@ -5,7 +5,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { PhotoshopPicker } from "react-color";
+import { PhotoshopPicker, ChromePicker } from "react-color";
 import { IoIosColorPalette } from "react-icons/io";
 import EditorContext from "../../context/EditorContext";
 import ToolBarButton from "../../Header/ToolBar/ToolBarButton/ToolBarButton";
@@ -34,6 +34,8 @@ const ColorPicker = () => {
   const onChange = ({ hex }) => {
     setLocalColor(hex);
   };
+
+  const onMobileChange = ({ hex }) => replaceColor(indexOfSelectedColor, hex);
 
   const onButtonClick = ({ clientX, clientY }) => {
     setPickerLocation({
@@ -79,6 +81,7 @@ const ColorPicker = () => {
       {isColorPickerVisible && (
         <StyledColorPicker.Popover>
           <StyledColorPicker.Cover ref={ref} {...pickerLocation}>
+            <ChromePicker color={localColor} onChange={onMobileChange} />
             <PhotoshopPicker
               color={localColor}
               onChange={onChange}
