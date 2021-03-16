@@ -1,52 +1,59 @@
 import { baseColor } from "../consts";
 
-interface IMorphArrayProps {
-    pixelArray: string[][];
-    newWidth?: number;
-    newHeight?: number;
+export const copyTwoDimenisonalArray = (pixelArray: string[][]) => {
+    const copyOfPixelArray = [];
+    for (let i = 0; i < pixelArray.length; i++) copyOfPixelArray[i] = pixelArray[i].slice();
+    return copyOfPixelArray;
 }
 
-const generateRows = (sizeOfRow:number, color: string):string[] => [...Array(sizeOfRow)].map(() => color);
-const generateColumns = (sizeOfColumns: number, row: string[]) => [...Array(sizeOfColumns)].map(() => row);
+const generateColumns = (columnsNumber:number, color: string):string[] => [...Array(columnsNumber)].map(() => color);
+const generateRows = (rowNumber: number, column: string[]) => [...Array(rowNumber)].map(() => column);
+const addColumnsToArray = (pixelArray: string[][], changeOfRows: number):string[][]=> pixelArray.map(array => [...array, ...generateColumns(changeOfRows, baseColor)]);
 
-const addRowsToArray = (pixelArray: string[][], changeOfRows: number):string[][]=> pixelArray.map(array => [...array, ...generateRows(changeOfRows, baseColor)]);
-const addColumnsToArray = (pixelArray: string[][], changeOfColumns: number): string[][] => {
-    const sizeOfRow = pixelArray[0].length;
-    const newColumns = generateColumns(changeOfColumns, generateRows(sizeOfRow, baseColor))
-    return [...pixelArray, ...newColumns];
+const addRowsToArray = (pixelArray: string[][], changeOfColumns: number): string[][] => {
+    const sizeOfColumn = pixelArray[0].length;
+    const newRows = generateRows(changeOfColumns, generateColumns(sizeOfColumn, baseColor))
+    return [...pixelArray, ...newRows];
 };
 
-const removeRowsFromArray = (pixelArray: string[][], rowsLength: number):string[][] => pixelArray.map(array => array.slice(0,rowsLength));
-const removeColumnsFromArray = (pixelArray: string[][], newLength: number): string[][] => {
+export const generatePixelArray = (row:number, column:number) => {
+  return generateRows(column, generateColumns(row, baseColor))
+}
+
+const removeColumnsFromArray = (pixelArray: string[][], columnsLength: number):string[][] => pixelArray.map(array => array.slice(0,columnsLength));
+const removeRowsFromArray = (pixelArray: string[][], newLength: number): string[][] => {
     pixelArray.length = newLength;
     return pixelArray;
 }
 
-export const morphPixelArray = ({
-    pixelArray, newWidth, newHeight
-  }:IMorphArrayProps):string[][] => {
-    let newPixelArray = pixelArray;
-    if(newHeight) {
-        const columnsDifference = newHeight - pixelArray.length; 
-        if(columnsDifference > 0) newPixelArray = addColumnsToArray(newPixelArray, columnsDifference);
-        if(columnsDifference < 0) newPixelArray = removeColumnsFromArray(newPixelArray, newHeight);
-    } else if(newWidth) {
-        const rowsDifference = newWidth - pixelArray[0].length;
-        if(rowsDifference > 0) newPixelArray = addRowsToArray(newPixelArray, rowsDifference);
-        if(rowsDifference < 0) newPixelArray = removeRowsFromArray(newPixelArray, newWidth);
-    }
+export const morphPixelArrayWidth = (pixelArray:string[][], newWidth:number) => {
+    let newPixelArray = copyTwoDimenisonalArray(pixelArray);
+
+    const columnsDifference = newWidth - pixelArray[0].length; 
+    if(columnsDifference > 0) newPixelArray = addColumnsToArray(newPixelArray, columnsDifference);
+    if(columnsDifference < 0) newPixelArray = removeColumnsFromArray(newPixelArray, newWidth);
+
+    return newPixelArray;
+}
+
+export const morphPixelArrayHeight = (pixelArray: string[][], newHeight: number) => {
+    const rowsDifference = newHeight - pixelArray.length;
+    let newPixelArray = copyTwoDimenisonalArray(pixelArray);
+
+    if(rowsDifference > 0) newPixelArray = addRowsToArray(newPixelArray, rowsDifference);
+    if(rowsDifference < 0) newPixelArray = removeRowsFromArray(newPixelArray, newHeight);
     
     return newPixelArray;
 }
 
-export const fillPixelArrayWithColor = (pixelArray:string[][], newColor:string,i:number, j:number) => {
-    const current = pixelArray[i][j];
-    if(current === newColor){
-        return pixelArray;
-    }
+export const fillPixelArrayWithColor = (pixelArray:string[][], newColor:string,rowIndex:number, columnIndex:number) => {
+    const copyOfPixelArray = copyTwoDimenisonalArray(pixelArray);
+    const current = copyOfPixelArray[rowIndex][columnIndex];
 
-    fill(pixelArray, i, j, newColor, current);
-    return pixelArray;
+    if(current === newColor) return copyOfPixelArray;
+
+    fill(copyOfPixelArray, rowIndex, columnIndex, newColor, current);
+    return copyOfPixelArray;
 }
 
 const fill = (image:string[][], sr:number, sc:number, newColor:string, current:string) => {

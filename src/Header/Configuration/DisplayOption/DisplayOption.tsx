@@ -11,7 +11,7 @@ const DisplayOption = (props: IDisplayOption) => {
   return (
     <StyledDisplayOption.OptionWrapper>
       <StyledDisplayOption.Checbox
-        onClick={props.onCheck}
+        onChange={props.onCheck}
         type="checkbox"
         checked={props.isActive}
       />

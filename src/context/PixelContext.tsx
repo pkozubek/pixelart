@@ -1,7 +1,11 @@
 import React, { createContext, useReducer, useState, useCallback } from "react";
-import { defaultPixelArray } from "../consts";
+import { baseHeight, baseWidth, defaultPixelArray } from "../consts";
 import { PixelActions } from "./Actions";
-import { morphPixelArray, fillPixelArrayWithColor } from "../utils/pixelArray";
+import {
+  fillPixelArrayWithColor,
+  morphPixelArrayWidth,
+  morphPixelArrayHeight,
+} from "../utils/pixelArray";
 interface IPixelState {
   pixelArray: string[][];
   rows: number;
@@ -29,14 +33,14 @@ interface IPixelContext extends IPixelState {
   ) => void;
 }
 
-export const PixelContext = createContext<IPixelContext>(null);
-
 const initialState: IPixelState = {
   pixelArray: defaultPixelArray,
-  rows: 3,
-  columns: 3,
-  pixelSize: 80,
+  rows: baseHeight,
+  columns: baseWidth,
+  pixelSize: 40,
 };
+
+export const PixelContext = createContext<IPixelContext>(null);
 
 interface IPixelContextProviderProps {
   children: JSX.Element;
@@ -56,26 +60,26 @@ export const PixelContextProvider = ({
       case PixelActions.SET_PIXE_SIZE:
         return { ...state, pixelSize: action.pixelSize };
       case PixelActions.SET_PIXEL_WIDTH:
-        const widthPixelArray = morphPixelArray({
-          pixelArray: state.pixelArray,
-          newWidth: action.rows,
-        });
+        const widthPixelArray = morphPixelArrayWidth(
+          state.pixelArray,
+          action.columns
+        );
 
         return {
           ...state,
           pixelArray: widthPixelArray,
-          rows: action.rows,
+          columns: action.columns,
         };
       case PixelActions.SET_PIXEL_HEIGHT:
-        const heightPixelArray = morphPixelArray({
-          pixelArray: state.pixelArray,
-          newHeight: action.columns,
-        });
+        const heightPixelArray = morphPixelArrayHeight(
+          state.pixelArray,
+          action.rows
+        );
 
         return {
           ...state,
           pixelArray: heightPixelArray,
-          columns: action.columns,
+          rows: action.rows,
         };
       default:
         return state;
@@ -114,14 +118,14 @@ export const PixelContextProvider = ({
 
   const setPixelColumns = (columns: number) => {
     dispatch({
-      type: PixelActions.SET_PIXEL_HEIGHT,
+      type: PixelActions.SET_PIXEL_WIDTH,
       columns,
     });
   };
 
   const setPixelRows = (rows: number) => {
     dispatch({
-      type: PixelActions.SET_PIXEL_WIDTH,
+      type: PixelActions.SET_PIXEL_HEIGHT,
       rows,
     });
   };
@@ -131,9 +135,9 @@ export const PixelContextProvider = ({
     setPreviousPixelArray([...previousPixelArray, state.pixelArray]);
     setRevertedPixelArray([]);
 
-    const newRow = [...newPixelArray[column]];
-    newRow[row] = color;
-    newPixelArray[column] = newRow;
+    const newRow = [...newPixelArray[row]];
+    newRow[column] = color;
+    newPixelArray[row] = newRow;
 
     dispatch({
       type: PixelActions.SET_PIXEL_TABLE,
@@ -184,19 +188,20 @@ export const PixelContextProvider = ({
     }
   };
 
-  const fillWithColor = useCallback(
-    (rowIndex: number, columnIndex: number, newColor: string) => {
-      const newPixelArray = fillPixelArrayWithColor(
-        state.pixelArray,
-        newColor,
-        columnIndex,
-        rowIndex
-      );
+  const fillWithColor = (
+    rowIndex: number,
+    columnIndex: number,
+    newColor: string
+  ) => {
+    const newPixelArray = fillPixelArrayWithColor(
+      state.pixelArray,
+      newColor,
+      rowIndex,
+      columnIndex
+    );
 
-      setPixelArray(newPixelArray);
-    },
-    [dispatch, state.pixelArray]
-  );
+    setPixelArray(newPixelArray);
+  };
 
   const setPixelArtFromStorage = useCallback(
     (item) => {

@@ -36,15 +36,15 @@ const Configuration = () => {
           key="width"
           text="width"
           icon={<AiOutlineColumnWidth />}
-          value={rows}
-          onChange={setPixelRows}
+          value={columns}
+          onChange={setPixelColumns}
         />
         <ConfigurationType
           key="height"
           text="height"
           icon={<AiOutlineColumnHeight />}
-          value={columns}
-          onChange={setPixelColumns}
+          value={rows}
+          onChange={setPixelRows}
         />
       </Category>
       <Category name="Display options">

@@ -31,7 +31,7 @@ const PixelGrid = () => {
       let targetColor = pickedColor;
       if (editorMode === editorMods.ERASER) targetColor = baseColor;
 
-      if (pixelArray[columnIndex][rowIndex] !== targetColor)
+      if (pixelArray[rowIndex][columnIndex] !== targetColor)
         setPixel(targetColor, rowIndex, columnIndex);
     }
   };
@@ -45,7 +45,7 @@ const PixelGrid = () => {
         setPixel(baseColor, rowIndex, columnIndex);
         break;
       case editorMods.COLOR_SELECTOR:
-        replaceColor(indexOfSelectedColor, pixelArray[columnIndex][rowIndex]);
+        replaceColor(indexOfSelectedColor, pixelArray[rowIndex][columnIndex]);
         break;
       case editorMods.FILL:
         fillWithColor(rowIndex, columnIndex, pickedColor);
@@ -56,17 +56,17 @@ const PixelGrid = () => {
   return (
     <StyledPixelGrid.PixelGrid
       className="PixelGrid"
-      rows={columns}
-      columns={rows}
+      rows={rows}
+      columns={columns}
       pixelSize={pixelSize}
       onMouseDown={() => setMouseClicked(true)}
       onMouseUp={() => setMouseClicked(false)}
     >
-      {pixelArray.map((pixelRow, columnIndex) =>
-        pixelRow.map((pixelColor, rowIndex) => (
+      {pixelArray.map((rowColumn, rowIndex) =>
+        rowColumn.map((pixelColor, columnIndex) => (
           <StyledPixelGrid.Pixel
             isBorder={areLinesVisible}
-            key={`pixel-${columnIndex}-${rowIndex}`}
+            key={`pixel-${rowIndex}-${columnIndex}`}
             onClick={() => onPixelTileClick(rowIndex, columnIndex)}
             onMouseMove={() => onMouseOverTile(rowIndex, columnIndex)}
             pixelSize={pixelSize}
