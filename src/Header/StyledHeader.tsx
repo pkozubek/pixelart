@@ -20,7 +20,17 @@ export const TabContainer = styled.div`
   }
 `;
 
-export const Tab = styled.div`
+export const Navigation = styled.nav``;
+
+export const TabList = styled.ul`
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  height: 100%;
+`;
+
+export const Tab = styled.li`
   background: ${tabBackground};
   border: ${({ isActive }) => (isActive ? `1px solid ${colors.dark}` : "none")};
   border-bottom: none;

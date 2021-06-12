@@ -22,15 +22,19 @@ const Header = () => {
     <header>
       <StyledHeader.TabContainer>
         <NewPixelArt />
-        {tabs.map((name) => (
-          <StyledHeader.Tab
-            isActive={selectedTab === name}
-            key={name}
-            onClick={() => setSelectedTab(name)}
-          >
-            {name}
-          </StyledHeader.Tab>
-        ))}
+        <nav>
+          <StyledHeader.TabList>
+            {tabs.map((name) => (
+              <StyledHeader.Tab
+                isActive={selectedTab === name}
+                key={name}
+                onClick={() => setSelectedTab(name)}
+              >
+                {name}
+              </StyledHeader.Tab>
+            ))}
+          </StyledHeader.TabList>
+        </nav>
       </StyledHeader.TabContainer>
       <StyledHeader.TabContent>{renderContent()}</StyledHeader.TabContent>
     </header>
