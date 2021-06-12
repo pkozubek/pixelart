@@ -6,6 +6,7 @@ import {
   morphPixelArrayWidth,
   morphPixelArrayHeight,
 } from "../utils/pixelArray";
+
 interface IPixelState {
   pixelArray: string[][];
   rows: number;
@@ -46,46 +47,46 @@ interface IPixelContextProviderProps {
   children: JSX.Element;
 }
 
+const pixelReducer = (state: IPixelState, action) => {
+  switch (action.type) {
+    case PixelActions.RESET_PIXEL_ARRAY:
+      return initialState;
+    case PixelActions.LOAD_SAVED:
+      return action.saved;
+    case PixelActions.SET_PIXEL_TABLE:
+      return { ...state, pixelArray: action.pixelArray };
+    case PixelActions.SET_PIXE_SIZE:
+      return { ...state, pixelSize: action.pixelSize };
+    case PixelActions.SET_PIXEL_WIDTH:
+      const widthPixelArray = morphPixelArrayWidth(
+        state.pixelArray,
+        action.columns
+      );
+
+      return {
+        ...state,
+        pixelArray: widthPixelArray,
+        columns: action.columns,
+      };
+    case PixelActions.SET_PIXEL_HEIGHT:
+      const heightPixelArray = morphPixelArrayHeight(
+        state.pixelArray,
+        action.rows
+      );
+
+      return {
+        ...state,
+        pixelArray: heightPixelArray,
+        rows: action.rows,
+      };
+    default:
+      return state;
+  }
+};
+
 export const PixelContextProvider = ({
   children,
 }: IPixelContextProviderProps) => {
-  const pixelReducer = (state: IPixelState, action) => {
-    switch (action.type) {
-      case PixelActions.RESET_PIXEL_ARRAY:
-        return initialState;
-      case PixelActions.LOAD_SAVED:
-        return action.saved;
-      case PixelActions.SET_PIXEL_TABLE:
-        return { ...state, pixelArray: action.pixelArray };
-      case PixelActions.SET_PIXE_SIZE:
-        return { ...state, pixelSize: action.pixelSize };
-      case PixelActions.SET_PIXEL_WIDTH:
-        const widthPixelArray = morphPixelArrayWidth(
-          state.pixelArray,
-          action.columns
-        );
-
-        return {
-          ...state,
-          pixelArray: widthPixelArray,
-          columns: action.columns,
-        };
-      case PixelActions.SET_PIXEL_HEIGHT:
-        const heightPixelArray = morphPixelArrayHeight(
-          state.pixelArray,
-          action.rows
-        );
-
-        return {
-          ...state,
-          pixelArray: heightPixelArray,
-          rows: action.rows,
-        };
-      default:
-        return state;
-    }
-  };
-
   const [state, dispatch] = useReducer(pixelReducer, initialState);
   const [previousPixelArray, setPreviousPixelArray] = useState([]);
   const [revertedPixelArray, setRevertedPixelArray] = useState([]);

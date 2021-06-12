@@ -62,8 +62,11 @@ export const Title = styled.div`
     }
 `
 
-export const CloseIcon = styled.span`
-    color: white;
+export const CloseIcon = styled.button`
+    background: none;
+    margin: 0;
+    padding: 0;
+    border: none;
     position: absolute;
     left: calc(95% - ${(buttonSize/2)+'px'});
     top: 10px;
@@ -75,6 +78,7 @@ export const CloseIcon = styled.span`
     }
 
     svg {
+        color: white;
         width: ${buttonSize+'px'};
         height: ${buttonSize+'px'};
     }

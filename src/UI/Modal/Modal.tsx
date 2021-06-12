@@ -41,7 +41,10 @@ const Modal = (props: IModalProps) => {
         <ModalStyledComponents.Modal>
           <ModalStyledComponents.Title>
             <h2>{props.title}</h2>
-            <ModalStyledComponents.CloseIcon onClick={props.visibilityHandler}>
+            <ModalStyledComponents.CloseIcon
+              aria-label="close_modal"
+              onClick={props.visibilityHandler}
+            >
               <AiFillCloseCircle />
             </ModalStyledComponents.CloseIcon>
           </ModalStyledComponents.Title>

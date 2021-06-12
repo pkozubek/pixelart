@@ -12,14 +12,8 @@ const PixelGrid = () => {
     replaceColor,
     areLinesVisible,
   } = useContext(EditorContext);
-  const {
-    pixelArray,
-    rows,
-    columns,
-    pixelSize,
-    setPixel,
-    fillWithColor,
-  } = useContext(PixelContext);
+  const { pixelArray, rows, columns, pixelSize, setPixel, fillWithColor } =
+    useContext(PixelContext);
 
   const [isMouseClicked, setMouseClicked] = useState(false);
 
